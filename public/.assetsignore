@@ -1,0 +1,3 @@
+# Files Cloudflare Workers should NOT serve as static assets (gitignore syntax).
+# This is a pure static site (no server worker), so nothing needs excluding.
+# Astro copies this file from public/ into dist/ at build time.

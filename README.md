@@ -60,18 +60,31 @@ npm run build     # static output → dist/
 npm run preview   # preview the built site
 ```
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare
 
-1. Push the repo to GitHub/GitLab.
-2. Cloudflare Pages → Create project → connect the repo.
-3. Build settings:
-   - **Framework preset**: Astro
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist`
-   - **Environment variable**: `SITE_URL=https://yourdomain.com`
-4. Add your custom domain in Pages.
+This is a pure static site, so either Cloudflare product works. Both serve the built `dist/`.
 
-That's it — no server, no functions. Twilio call forwarding is configured separately in the
+### Option A — Cloudflare Workers (Static Assets)
+
+Uses `wrangler.jsonc` in the repo (`assets.directory: "./dist"`).
+
+- **Local CLI:** `npm run deploy` (runs `astro build` then `npx wrangler deploy`).
+- **Git-connected (Workers Builds):** Cloudflare reads `wrangler.jsonc`. Set:
+  - **Build command**: `npm run build`
+  - **Deploy command**: `npx wrangler deploy` (or leave default)
+  - **Environment variable**: `SITE_URL=https://yourdomain.com`
+
+> **`public/.assetsignore`** must exist — Workers Static Assets expects it, and Astro copies
+> it into `dist/` at build. It's empty (we serve everything); don't delete it.
+
+### Option B — Cloudflare Pages (simplest)
+
+- Pages → Create project → connect the repo.
+- **Build command**: `npm run build` · **Output directory**: `dist`
+- **Environment variable**: `SITE_URL=https://yourdomain.com`
+- Pages ignores `wrangler.jsonc`/`.assetsignore` — neither is needed here.
+
+Either way: no server, no functions. Twilio call forwarding is configured separately in the
 Twilio console (point your tracked number at the destination/contractor).
 
 ## Project layout
