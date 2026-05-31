@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // `site` is the canonical base for URLs + the generated sitemap.
 // Keep this in sync with SITE.url in src/config/site.ts (or override via SITE_URL).
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://example.com',
+  site: process.env.SITE_URL || 'https://eastbaygaragedoorrepair.com',
   trailingSlash: 'ignore',
   integrations: [
     sitemap({

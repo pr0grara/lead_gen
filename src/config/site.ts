@@ -40,7 +40,7 @@ export const SITE: SiteConfig = {
   phoneDisplay: '(510) 694-2210',
   email: 'hello@example.com',
   region: 'East Bay',
-  url: 'https://example.com',
+  url: 'https://eastbaygaragedoorrepair.com',
   formEndpoint: '',
   formAccessKey: '',
   mapEmbedSrc: '',
