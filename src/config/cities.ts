@@ -9,21 +9,22 @@ export interface City {
   state?: string;
 }
 
+// East Bay (Alameda & Contra Costa counties) only.
 export const CITIES: City[] = [
-  { slug: 'san-francisco', name: 'San Francisco', state: 'CA' },
   { slug: 'oakland', name: 'Oakland', state: 'CA' },
-  { slug: 'san-jose', name: 'San Jose', state: 'CA' },
   { slug: 'berkeley', name: 'Berkeley', state: 'CA' },
   { slug: 'fremont', name: 'Fremont', state: 'CA' },
   { slug: 'hayward', name: 'Hayward', state: 'CA' },
-  { slug: 'sunnyvale', name: 'Sunnyvale', state: 'CA' },
-  { slug: 'santa-clara', name: 'Santa Clara', state: 'CA' },
-  { slug: 'palo-alto', name: 'Palo Alto', state: 'CA' },
-  { slug: 'mountain-view', name: 'Mountain View', state: 'CA' },
-  { slug: 'san-mateo', name: 'San Mateo', state: 'CA' },
-  { slug: 'daly-city', name: 'Daly City', state: 'CA' },
   { slug: 'richmond', name: 'Richmond', state: 'CA' },
   { slug: 'concord', name: 'Concord', state: 'CA' },
+  { slug: 'walnut-creek', name: 'Walnut Creek', state: 'CA' },
+  { slug: 'alameda', name: 'Alameda', state: 'CA' },
+  { slug: 'san-leandro', name: 'San Leandro', state: 'CA' },
+  { slug: 'pleasanton', name: 'Pleasanton', state: 'CA' },
+  { slug: 'dublin', name: 'Dublin', state: 'CA' },
+  { slug: 'livermore', name: 'Livermore', state: 'CA' },
+  { slug: 'castro-valley', name: 'Castro Valley', state: 'CA' },
+  { slug: 'union-city', name: 'Union City', state: 'CA' },
 ];
 
 export const getCity = (slug: string): City | undefined =>

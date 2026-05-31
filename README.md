@@ -25,9 +25,17 @@ many "[service] in [city]" searches. Outputs static files to `dist/` — deploys
 
 Everything lives in `src/config/`:
 
-- `site.ts` — company, phone, region, production `url`, and the **form endpoint**.
+- `site.ts` — company, phone, region, production `url`, the **form endpoint**, and the
+  **service-area map** (`mapEmbedSrc`).
 - `services.ts` — the services offered (each adds a hub page + one page per city).
 - `cities.ts` — the service-area cities (each adds a hub page + one page per service).
+
+### Service-area map
+
+The home page's "Serving the {region}" section shows a map next to the city links. By default
+it uses a keyless Google Maps embed centered on `SITE.region`. For precise framing, set
+`SITE.mapEmbedSrc` to an official embed src (Google Maps → Share → **Embed a map** → copy the
+`src`).
 
 **Page count = services × cities + hubs.** With 4 services and 14 cities that's
 4×14 + 4 + 14 + 3 ≈ **77 pages**, all from config.

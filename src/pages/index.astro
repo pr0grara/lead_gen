@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QuoteForm from '../components/QuoteForm.astro';
 import ServiceCards from '../components/ServiceCards.astro';
-import CityLinks from '../components/CityLinks.astro';
+import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 import Reviews from '../components/Reviews.astro';
 import FinalCta from '../components/FinalCta.astro';
 import { SITE, tel } from '../config/site';
@@ -37,7 +37,7 @@ const description = `Fast, reliable ${SITE.trade} and installation across the ${
   </section>
 
   <ServiceCards />
-  <CityLinks />
+  <ServiceAreaMap />
   <Reviews />
   <FinalCta />
 </BaseLayout>

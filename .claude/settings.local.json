@@ -14,7 +14,8 @@
       "Bash(node -p \"require\\('./node_modules/astro/package.json'\\).version\")",
       "Bash(node -p \"require\\('./node_modules/@astrojs/sitemap/package.json'\\).version\")",
       "Bash(sed -n '70,95p' node_modules/@astrojs/sitemap/dist/index.js)",
-      "Bash(grep -oE '<meta name=\"description\" content=\"[^\"]{0,80}' spring-repair/oakland/index.html)"
+      "Bash(grep -oE '<meta name=\"description\" content=\"[^\"]{0,80}' spring-repair/oakland/index.html)",
+      "Bash(lsof -ti:4321)"
     ]
   }
 }

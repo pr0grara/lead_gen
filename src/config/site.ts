@@ -21,6 +21,12 @@ export interface SiteConfig {
   formEndpoint: string;
   /** Web3Forms access key, if using Web3Forms (otherwise leave ""). */
   formAccessKey: string;
+  /**
+   * Embedded map iframe `src` for the service-area section. Leave "" to use a
+   * keyless OpenStreetMap embed of the region (see ServiceAreaMap.astro). To use
+   * Google Maps, paste the src from Google Maps → Share → "Embed a map".
+   */
+  mapEmbedSrc: string;
   priceRange: string;
   ratingValue: string;
   reviewCount: string;
@@ -33,10 +39,11 @@ export const SITE: SiteConfig = {
   phone: '+15106942210',
   phoneDisplay: '(510) 694-2210',
   email: 'hello@example.com',
-  region: 'Bay Area',
+  region: 'East Bay',
   url: 'https://example.com',
   formEndpoint: '',
   formAccessKey: '',
+  mapEmbedSrc: '',
   priceRange: '$$',
   ratingValue: '4.9',
   reviewCount: '127',

@@ -1,0 +1,34 @@
+---
+import { CITIES } from '../config/cities';
+import { SITE } from '../config/site';
+import { cityUrl } from '../lib/urls';
+
+// Keyless Google Maps embed centered on the region (raster tiles — no WebGL/key
+// required, renders everywhere). For a production-grade map, paste an official
+// embed src from Google Maps → Share → "Embed a map" into SITE.mapEmbedSrc.
+const GMAPS_DEFAULT = `https://www.google.com/maps?q=${encodeURIComponent(SITE.region + ', California')}&z=10&output=embed`;
+const mapSrc = SITE.mapEmbedSrc || GMAPS_DEFAULT;
+---
+<section class="section section-soft" id="service-area">
+  <div class="container">
+    <h2 class="section-title">Serving the {SITE.region}</h2>
+    <p class="section-sub">
+      Fast, local {SITE.trade} across the {SITE.region} — tap your city for details.
+    </p>
+    <div class="area-grid">
+      <div class="area-map">
+        <iframe
+          title={`Service area map — ${SITE.region}`}
+          src={mapSrc}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <ul class="cities area-cities">
+        {CITIES.map((c) => (
+          <li><a href={cityUrl(c)}>{c.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
