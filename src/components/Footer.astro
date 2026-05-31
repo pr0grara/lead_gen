@@ -1,0 +1,35 @@
+---
+import { SITE, tel } from '../config/site';
+import { SERVICES } from '../config/services';
+import { CITIES } from '../config/cities';
+import { serviceUrl, cityUrl } from '../lib/urls';
+
+const year = new Date().getFullYear();
+const footerCities = CITIES.slice(0, 8);
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div>
+        <div class="footer-brand">{SITE.company}</div>
+        <p>{SITE.tagline} serving the {SITE.region}. Licensed &amp; insured, same-day service.</p>
+        <a class="btn btn-call" href={tel()}>📞 {SITE.phoneDisplay}</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        {SERVICES.map((s) => <a href={serviceUrl(s)}>{s.short}</a>)}
+      </div>
+      <div>
+        <h4>Service Area</h4>
+        {footerCities.map((c) => <a href={cityUrl(c)}>{c.name}</a>)}
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {year} {SITE.company}. All rights reserved.</p>
+      <nav>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+    </div>
+  </div>
+</footer>

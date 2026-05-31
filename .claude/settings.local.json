@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -f /tmp/next_desktop.png /tmp/next_mobile.png)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1280,2400 --screenshot=/tmp/next_desktop.png http://localhost:3001/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=390,2600 --screenshot=/tmp/next_mobile.png http://localhost:3001/)",
+      "Read(//tmp/**)",
+      "Bash(lsof -ti:3001)",
+      "Bash(xargs kill)",
+      "Bash(curl -s localhost:3000/api/health)",
+      "Bash(pkill -f \"server.js\")",
+      "Bash(pkill -f \"next\")",
+      "Bash(lsof -ti:3000,3001)",
+      "Bash(node -p \"require\\('./node_modules/astro/package.json'\\).version\")",
+      "Bash(node -p \"require\\('./node_modules/@astrojs/sitemap/package.json'\\).version\")",
+      "Bash(sed -n '70,95p' node_modules/@astrojs/sitemap/dist/index.js)",
+      "Bash(grep -oE '<meta name=\"description\" content=\"[^\"]{0,80}' spring-repair/oakland/index.html)"
+    ]
+  }
+}

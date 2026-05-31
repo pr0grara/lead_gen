@@ -1,0 +1,31 @@
+---
+import { CITIES } from '../config/cities';
+import { SITE } from '../config/site';
+import { cityUrl, cityServiceUrl } from '../lib/urls';
+import type { Service } from '../config/services';
+import type { City } from '../config/cities';
+
+interface Props {
+  /** If set, city links point to this service in each city; otherwise to the city hub. */
+  service?: Service;
+  /** Optionally exclude one city (e.g. the current one). */
+  exclude?: string;
+  title?: string;
+  sub?: string;
+}
+const { service, exclude, title, sub } = Astro.props;
+const cities: City[] = exclude ? CITIES.filter((c) => c.slug !== exclude) : CITIES;
+const heading = title ?? `Serving the ${SITE.region}`;
+const subtitle = sub ?? 'Fast, local garage door service throughout the area, including:';
+---
+<section class="section section-soft" id="service-area">
+  <div class="container">
+    <h2 class="section-title">{heading}</h2>
+    <p class="section-sub">{subtitle}</p>
+    <ul class="cities">
+      {cities.map((c) => (
+        <li><a href={service ? cityServiceUrl(service, c) : cityUrl(c)}>{c.name}</a></li>
+      ))}
+    </ul>
+  </div>
+</section>

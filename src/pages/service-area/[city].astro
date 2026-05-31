@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import Reviews from '../../components/Reviews.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { CITIES } from '../../config/cities';
+import type { City } from '../../config/cities';
+import { SITE, tel } from '../../config/site';
+import { breadcrumb } from '../../lib/schema';
+import { cityUrl } from '../../lib/urls';
+
+export function getStaticPaths() {
+  return CITIES.map((c) => ({ params: { city: c.slug }, props: { city: c } }));
+}
+
+interface Props { city: City }
+const { city } = Astro.props;
+const place = `${city.name}${city.state ? ', ' + city.state : ''}`;
+
+const title = `Garage Door Repair in ${place} | ${SITE.company}`;
+const description = `Local garage door repair, opener, and installation in ${city.name}. ${SITE.company} offers same-day service, licensed techs, and upfront pricing. Call ${SITE.phoneDisplay}.`;
+const base = Astro.site?.href ?? 'https://example.com/';
+const jsonLd = breadcrumb([
+  { name: 'Home', url: base },
+  { name: city.name, url: new URL(cityUrl(city), base).href },
+]);
+---
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="container">
+    <nav class="crumbs"><a href="/">Home</a><span>/</span>Service Area<span>/</span>{city.name}</nav>
+  </div>
+
+  <section class="hero hero-single">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-copy">
+        <h1>Garage Door Services in {city.name}</h1>
+        <p class="lede">
+          Same-day garage door repair and installation for {city.name} homeowners — licensed,
+          insured, and upfront about pricing.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-call btn-lg" href={tel()}>📞 Call {SITE.phoneDisplay}</a>
+          <a class="btn btn-dark btn-lg" href="#quote">Get a Free Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ServiceCards
+    city={city}
+    title={`Garage Door Services We Offer in ${city.name}`}
+    sub={`From broken springs to new doors — full-service garage door help in ${city.name}.`}
+  />
+
+  <section class="section section-soft">
+    <div class="container" style="max-width:720px;">
+      <div id="quote">
+        <QuoteForm source={`city:${city.slug}`} heading={`Free Quote in ${city.name}`} />
+      </div>
+    </div>
+  </section>
+
+  <Reviews />
+  <FinalCta
+    heading={`Garage door help in ${city.name}, today.`}
+    sub={`Call now for same-day service in ${city.name}, or request a free quote.`}
+  />
+</BaseLayout>

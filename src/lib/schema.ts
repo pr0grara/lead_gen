@@ -1,0 +1,46 @@
+import { SITE } from '../config/site';
+import { CITIES } from '../config/cities';
+
+// Site-wide LocalBusiness schema (injected on every page by BaseLayout).
+export function localBusiness(siteUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: SITE.company,
+    description: `${SITE.tagline} serving the ${SITE.region}.`,
+    telephone: SITE.phone,
+    email: SITE.email,
+    url: siteUrl,
+    priceRange: SITE.priceRange,
+    areaServed: CITIES.map((c) => ({ '@type': 'City', name: c.name })),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: SITE.ratingValue,
+      reviewCount: SITE.reviewCount,
+    },
+  };
+}
+
+export function breadcrumb(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: it.url,
+    })),
+  };
+}
+
+export function serviceSchema(opts: { name: string; description: string; areaName: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: opts.name,
+    provider: { '@type': 'LocalBusiness', name: SITE.company, telephone: SITE.phone },
+    areaServed: opts.areaName,
+    description: opts.description,
+  };
+}

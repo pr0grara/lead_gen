@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import CityLinks from '../../components/CityLinks.astro';
+import Reviews from '../../components/Reviews.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { SERVICES } from '../../config/services';
+import type { Service } from '../../config/services';
+import { SITE, tel } from '../../config/site';
+import { breadcrumb, serviceSchema } from '../../lib/schema';
+import { serviceUrl } from '../../lib/urls';
+
+export function getStaticPaths() {
+  return SERVICES.map((s) => ({ params: { service: s.slug }, props: { service: s } }));
+}
+
+interface Props { service: Service }
+const { service } = Astro.props;
+
+const title = `${service.name} in the ${SITE.region} | ${SITE.company}`;
+const description = `${service.blurb} ${SITE.company} provides ${service.name.toLowerCase()} across the ${SITE.region}. Call ${SITE.phoneDisplay} for same-day service.`;
+const base = Astro.site?.href ?? 'https://example.com/';
+const jsonLd = [
+  breadcrumb([
+    { name: 'Home', url: base },
+    { name: service.short, url: new URL(serviceUrl(service), base).href },
+  ]),
+  serviceSchema({ name: service.name, description: service.description, areaName: SITE.region }),
+];
+---
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="container">
+    <nav class="crumbs"><a href="/">Home</a><span>/</span>{service.short}</nav>
+  </div>
+
+  <section class="hero hero-single">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-copy">
+        <h1>{service.name} in the {SITE.region}</h1>
+        <p class="lede">{service.blurb}</p>
+        <div class="hero-cta">
+          <a class="btn btn-call btn-lg" href={tel()}>📞 Call {SITE.phoneDisplay}</a>
+          <a class="btn btn-dark btn-lg" href="#quote">Get a Free Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container srow">
+      <div class="srow-text prose">
+        <h2>{service.name}</h2>
+        <p>{service.description}</p>
+        <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
+      </div>
+      <div class="srow-photo"><img src={service.image} alt={service.imageAlt} loading="lazy" /></div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container" style="max-width:720px;">
+      <div id="quote">
+        <QuoteForm source={`service:${service.slug}`} heading={`Request ${service.short}`} />
+      </div>
+    </div>
+  </section>
+
+  <CityLinks
+    service={service}
+    title={`${service.short} across the ${SITE.region}`}
+    sub="Choose your city for local service details:"
+  />
+  <Reviews />
+  <FinalCta heading={`Need ${service.short.toLowerCase()}? We can help today.`} />
+</BaseLayout>

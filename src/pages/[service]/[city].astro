@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import CityLinks from '../../components/CityLinks.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import { SERVICES } from '../../config/services';
+import type { Service } from '../../config/services';
+import { CITIES } from '../../config/cities';
+import type { City } from '../../config/cities';
+import { SITE, tel } from '../../config/site';
+import { breadcrumb, serviceSchema } from '../../lib/schema';
+import { serviceUrl, cityServiceUrl } from '../../lib/urls';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const service of SERVICES) {
+    for (const city of CITIES) {
+      paths.push({ params: { service: service.slug, city: city.slug }, props: { service, city } });
+    }
+  }
+  return paths;
+}
+
+interface Props { service: Service; city: City }
+const { service, city } = Astro.props;
+const place = `${city.name}${city.state ? ', ' + city.state : ''}`;
+
+const title = `${service.name} in ${place} | ${SITE.company}`;
+const description = `Need ${service.name.toLowerCase()} in ${city.name}? ${SITE.company} offers same-day ${service.short.toLowerCase()} in ${city.name} and nearby. Upfront pricing — call ${SITE.phoneDisplay}.`;
+const base = Astro.site?.href ?? 'https://example.com/';
+const jsonLd = [
+  breadcrumb([
+    { name: 'Home', url: base },
+    { name: service.short, url: new URL(serviceUrl(service), base).href },
+    { name: city.name, url: new URL(cityServiceUrl(service, city), base).href },
+  ]),
+  serviceSchema({ name: `${service.name} in ${city.name}`, description: service.description, areaName: place }),
+];
+---
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <div class="container">
+    <nav class="crumbs">
+      <a href="/">Home</a><span>/</span><a href={serviceUrl(service)}>{service.short}</a><span>/</span>{city.name}
+    </nav>
+  </div>
+
+  <section class="hero hero-single">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-copy">
+        <h1>{service.name} in {city.name}</h1>
+        <p class="lede">
+          Fast, local {service.short.toLowerCase()} for {city.name} homeowners — same-day mobile
+          service from licensed, insured technicians.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-call btn-lg" href={tel()}>📞 Call {SITE.phoneDisplay}</a>
+          <a class="btn btn-dark btn-lg" href="#quote">Get a Free Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container srow">
+      <div class="srow-text prose">
+        <h2>{service.short} in {city.name}, {city.state}</h2>
+        <p>{service.description}</p>
+        <p>
+          Serving {city.name} and the surrounding {SITE.region}, our technicians arrive fully stocked
+          to finish most {service.short.toLowerCase()} jobs in a single visit — with a clear, upfront
+          quote before any work begins.
+        </p>
+        <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
+      </div>
+      <div class="srow-photo"><img src={service.image} alt={`${service.imageAlt} in ${city.name}`} loading="lazy" /></div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container" style="max-width:720px;">
+      <div id="quote">
+        <QuoteForm
+          source={`${service.slug}:${city.slug}`}
+          heading={`Free Quote — ${service.short} in ${city.name}`}
+          sub="Tell us what's going on and we'll call you right back."
+        />
+      </div>
+    </div>
+  </section>
+
+  <ServiceCards
+    city={city}
+    title={`Other Garage Door Services in ${city.name}`}
+    sub={`We handle every garage door issue in ${city.name} and nearby.`}
+  />
+  <CityLinks
+    service={service}
+    exclude={city.slug}
+    title={`${service.short} in Nearby Cities`}
+    sub="We also serve these nearby areas:"
+  />
+  <FinalCta
+    heading={`${service.short} in ${city.name}, today.`}
+    sub={`Call now for same-day ${service.short.toLowerCase()} in ${city.name}, or request a free quote.`}
+  />
+</BaseLayout>

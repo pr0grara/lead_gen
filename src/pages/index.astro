@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import CityLinks from '../components/CityLinks.astro';
+import Reviews from '../components/Reviews.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { SITE, tel } from '../config/site';
+
+const title = `${SITE.company} — ${SITE.tagline} in the ${SITE.region}`;
+const description = `Fast, reliable ${SITE.trade} and installation across the ${SITE.region}. Same-day mobile service, licensed technicians, upfront pricing. Call ${SITE.phoneDisplay}.`;
+---
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>{SITE.region} Garage Door Repair Pros</h1>
+        <p class="lede">
+          Broken spring, noisy opener, or a door off its track? Our licensed technicians repair and
+          install every make and model — same-day mobile service with upfront pricing.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-call btn-lg" href={tel()}>📞 Call Now: {SITE.phoneDisplay}</a>
+          <a class="btn btn-dark btn-lg" href="#quote">Get a Free Quote</a>
+        </div>
+        <ul class="trust-row">
+          <li>✔ Same-Day Service</li>
+          <li>✔ Licensed &amp; Insured</li>
+          <li>✔ 5-Year Warranty</li>
+        </ul>
+      </div>
+      <div class="hero-form" id="quote">
+        <QuoteForm source="home" />
+      </div>
+    </div>
+  </section>
+
+  <ServiceCards />
+  <CityLinks />
+  <Reviews />
+  <FinalCta />
+</BaseLayout>

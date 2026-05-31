@@ -1,0 +1,21 @@
+---
+const REVIEWS = [
+  { quote: 'They replaced my broken spring within two hours of calling. Fair price, super professional.', name: '— Marcus T.' },
+  { quote: "New opener installed same day and they hauled off the old one. Couldn't be happier.", name: '— Lena K.' },
+  { quote: 'Upfront quote, no upsell, door works like new. Will call them again.', name: '— Dave R.' },
+];
+---
+<section class="section" id="reviews">
+  <div class="container">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-sub">Real feedback from homeowners we've helped.</p>
+    <div class="testimonials">
+      {REVIEWS.map((r) => (
+        <blockquote>
+          <p>&ldquo;{r.quote}&rdquo;</p>
+          <footer>{r.name}</footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>

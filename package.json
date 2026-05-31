@@ -1,0 +1,19 @@
+{
+  "name": "local-leadgen-astro",
+  "version": "1.0.0",
+  "description": "Static, SEO-first local lead-gen template (Astro). City × service pages from config. Deploys to Cloudflare Pages.",
+  "type": "module",
+  "engines": {
+    "node": ">=18.20.8"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "@astrojs/sitemap": "^3.7.3"
+  }
+}

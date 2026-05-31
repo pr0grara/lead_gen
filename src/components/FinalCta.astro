@@ -1,0 +1,22 @@
+---
+import { SITE, tel } from '../config/site';
+
+interface Props {
+  heading?: string;
+  sub?: string;
+}
+const {
+  heading = 'Garage door trouble? We can help today.',
+  sub = 'Same-day appointments fill up fast — call now or request your free quote.',
+} = Astro.props;
+---
+<section class="final-cta">
+  <div class="container">
+    <h2>{heading}</h2>
+    <p>{sub}</p>
+    <div class="final-cta-actions">
+      <a class="btn btn-call btn-lg" href={tel()}>📞 Call {SITE.phoneDisplay}</a>
+      <a href="#quote" class="btn btn-dark btn-lg">Get a Free Quote</a>
+    </div>
+  </div>
+</section>

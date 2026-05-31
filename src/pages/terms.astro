@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, tel } from '../config/site';
+
+const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout title={`Terms & Conditions — ${SITE.company}`} description={`Terms & Conditions for ${SITE.company}.`} noindex>
+  <main class="legal">
+    <div class="container">
+      <a class="back-link" href="/">&larr; Back to home</a>
+      <h1>Terms &amp; Conditions</h1>
+      <p class="updated">Last updated: {today}</p>
+
+      <div class="disclaimer">
+        <strong>Template notice:</strong> This is a generic template and not legal advice. Have these
+        terms reviewed by qualified counsel and tailored to your business, jurisdiction, and the laws
+        that apply to you before publishing.
+      </div>
+
+      <p>
+        These Terms &amp; Conditions ("Terms") govern your access to and use of the website and
+        services provided by {SITE.company} ("we," "us," or "our"). By accessing this site or
+        submitting any form, you agree to be bound by these Terms.
+      </p>
+
+      <h2>1. Use of the Site</h2>
+      <p>
+        You agree to use this site only for lawful purposes and to provide accurate, current, and
+        complete information when submitting any form.
+      </p>
+
+      <h2>2. Lead Submissions &amp; Consent to Contact</h2>
+      <p>
+        When you submit your information through our forms, you expressly consent to be contacted by
+        {SITE.company} at the phone number and email address you provide, including by automatic
+        telephone dialing systems, prerecorded messages, and SMS text messages, for marketing and
+        informational purposes.
+      </p>
+      <ul>
+        <li>Consent is <strong>not</strong> a condition of purchasing any goods or services.</li>
+        <li>Message and data rates may apply, and message frequency may vary.</li>
+        <li>You may opt out of calls at any time by request, or opt out of texts by replying STOP.</li>
+        <li>We honor do-not-call and unsubscribe requests as required by applicable law.</li>
+      </ul>
+
+      <h2>3. No Guarantees</h2>
+      <p>
+        Any results, statistics, or testimonials shown on this site are illustrative and do not
+        guarantee any particular outcome. Services are provided on an "as is" and "as available"
+        basis without warranties of any kind.
+      </p>
+
+      <h2>4. Limitation of Liability</h2>
+      <p>
+        To the fullest extent permitted by law, {SITE.company} shall not be liable for any indirect,
+        incidental, special, consequential, or punitive damages arising out of or relating to your use
+        of the site or our services.
+      </p>
+
+      <h2>5. Changes to These Terms</h2>
+      <p>
+        We may update these Terms from time to time. Changes are effective when posted to this page.
+      </p>
+
+      <h2>6. Contact</h2>
+      <p>
+        Questions about these Terms? Contact {SITE.company} at
+        <a href={tel()}>{SITE.phoneDisplay}</a>.
+      </p>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import { SITE, tel } from '../config/site';
+---
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Serving the <strong>{SITE.region}</strong> — Licensed &amp; Insured</span>
+    <a class="topbar-phone" href={tel()}>📞 {SITE.phoneDisplay}</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/">{SITE.company}</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </label>
+    <nav class="nav-links" id="primary-nav">
+      <a href="/#services">Services</a>
+      <a href="/#service-area">Service Area</a>
+      <a href="/#reviews">Reviews</a>
+      <a class="btn btn-call" href={tel()}>📞 Call {SITE.phoneDisplay}</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Close the mobile menu after tapping a link.
+  const toggle = document.getElementById('nav-toggle') as HTMLInputElement | null;
+  document.querySelectorAll('#primary-nav a').forEach((a) =>
+    a.addEventListener('click', () => {
+      if (toggle) toggle.checked = false;
+    })
+  );
+</script>
