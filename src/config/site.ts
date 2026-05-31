@@ -27,7 +27,7 @@ export interface SiteConfig {
 }
 
 export const SITE: SiteConfig = {
-  company: 'Garage Door Solutions',
+  company: 'Garage Door Repairs',
   tagline: 'Garage Door Repair & Installation',
   trade: 'garage door repair',
   phone: '+15106942210',
