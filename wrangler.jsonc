@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "garage-door-solutions",
+  "name": "garage-bayarea",
   "compatibility_date": "2026-05-01",
   // Pure static site: serve the built output directly via Workers Static Assets.
   // No `main` worker script — this is just a CDN for the Astro `dist/` output.
