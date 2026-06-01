@@ -2,19 +2,20 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import QuoteForm from '../../components/QuoteForm.astro';
 import ServiceCards from '../../components/ServiceCards.astro';
-import CityLinks from '../../components/CityLinks.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import NearbyCities from '../../components/NearbyCities.astro';
 import FinalCta from '../../components/FinalCta.astro';
-import { SERVICES } from '../../config/services';
+import { MATRIX_SERVICES } from '../../config/services';
 import type { Service } from '../../config/services';
-import { CITIES } from '../../config/cities';
+import { CITIES, nearbyCities } from '../../config/cities';
 import type { City } from '../../config/cities';
 import { SITE, tel } from '../../config/site';
-import { breadcrumb, serviceSchema } from '../../lib/schema';
-import { serviceUrl, cityServiceUrl } from '../../lib/urls';
+import { breadcrumb, faqPage, serviceSchema } from '../../lib/schema';
+import { serviceUrl, cityServiceUrl, cityUrl } from '../../lib/urls';
 
 export function getStaticPaths() {
   const paths = [];
-  for (const service of SERVICES) {
+  for (const service of MATRIX_SERVICES) {
     for (const city of CITIES) {
       paths.push({ params: { service: service.slug, city: city.slug }, props: { service, city } });
     }
@@ -25,9 +26,15 @@ export function getStaticPaths() {
 interface Props { service: Service; city: City }
 const { service, city } = Astro.props;
 const place = `${city.name}${city.state ? ', ' + city.state : ''}`;
+const near = nearbyCities(city);
+const hoods = city.neighborhoods.slice(0, 3).join(', ');
 
-const title = `${service.name} in ${place} | ${SITE.company}`;
-const description = `Need ${service.name.toLowerCase()} in ${city.name}? ${SITE.company} offers same-day ${service.short.toLowerCase()} in ${city.name} and nearby. Upfront pricing — call ${SITE.phoneDisplay}.`;
+const title = `${service.name} in ${place} | Same-Day`;
+const description = `${service.name} in ${city.name}, ${city.state ?? 'CA'} — same-day service with upfront pricing from licensed local techs. Serving ${city.name} and the nearby East Bay. Call ${SITE.phoneDisplay}.`;
+
+// Localized FAQ: the city's same-day question + this service's FAQs.
+const comboFaqs = [city.faqs[0], ...service.faqs].filter(Boolean);
+
 const base = Astro.site?.href ?? 'https://example.com/';
 const jsonLd = [
   breadcrumb([
@@ -36,6 +43,7 @@ const jsonLd = [
     { name: city.name, url: new URL(cityServiceUrl(service, city), base).href },
   ]),
   serviceSchema({ name: `${service.name} in ${city.name}`, description: service.description, areaName: place }),
+  faqPage(comboFaqs),
 ];
 ---
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
@@ -68,9 +76,11 @@ const jsonLd = [
         <h2>{service.short} in {city.name}, {city.state}</h2>
         <p>{service.description}</p>
         <p>
-          Serving {city.name} and the surrounding {SITE.region}, our technicians arrive fully stocked
-          to finish most {service.short.toLowerCase()} jobs in a single visit — with a clear, upfront
-          quote before any work begins.
+          We provide {service.short.toLowerCase()} throughout {city.name} — including {hoods} and the
+          surrounding {SITE.region} — arriving fully stocked to finish most jobs in a single visit,
+          with a clear, upfront quote before any work begins. Need broader help? See our
+          <a href={cityUrl(city)}>garage door repair in {city.name}</a> page or our
+          <a href={serviceUrl(service)}>{service.short.toLowerCase()} service</a> details.
         </p>
         <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
       </div>
@@ -90,17 +100,16 @@ const jsonLd = [
     </div>
   </section>
 
+  <FaqSection faqs={comboFaqs} title={`${service.short} in ${city.name} — FAQs`} />
+
   <ServiceCards
     city={city}
     title={`Other Garage Door Services in ${city.name}`}
     sub={`We handle every garage door issue in ${city.name} and nearby.`}
   />
-  <CityLinks
-    service={service}
-    exclude={city.slug}
-    title={`${service.short} in Nearby Cities`}
-    sub="We also serve these nearby areas:"
-  />
+
+  <NearbyCities cities={near} service={service} cityName={city.name} />
+
   <FinalCta
     heading={`${service.short} in ${city.name}, today.`}
     sub={`Call now for same-day ${service.short.toLowerCase()} in ${city.name}, or request a free quote.`}

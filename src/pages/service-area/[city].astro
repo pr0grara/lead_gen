@@ -2,12 +2,16 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import QuoteForm from '../../components/QuoteForm.astro';
 import ServiceCards from '../../components/ServiceCards.astro';
+import Neighborhoods from '../../components/Neighborhoods.astro';
+import CommonIssues from '../../components/CommonIssues.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import NearbyCities from '../../components/NearbyCities.astro';
 import Reviews from '../../components/Reviews.astro';
 import FinalCta from '../../components/FinalCta.astro';
-import { CITIES } from '../../config/cities';
+import { CITIES, nearbyCities } from '../../config/cities';
 import type { City } from '../../config/cities';
 import { SITE, tel } from '../../config/site';
-import { breadcrumb } from '../../lib/schema';
+import { breadcrumb, faqPage } from '../../lib/schema';
 import { cityUrl } from '../../lib/urls';
 
 export function getStaticPaths() {
@@ -17,14 +21,19 @@ export function getStaticPaths() {
 interface Props { city: City }
 const { city } = Astro.props;
 const place = `${city.name}${city.state ? ', ' + city.state : ''}`;
+const near = nearbyCities(city);
 
-const title = `Garage Door Repair in ${place} | ${SITE.company}`;
-const description = `Local garage door repair, opener, and installation in ${city.name}. ${SITE.company} offers same-day service, licensed techs, and upfront pricing. Call ${SITE.phoneDisplay}.`;
+// ~55–60 char title; unique, city-specific meta description.
+const title = `Garage Door Repair ${place} | Same-Day Service`;
+const description = `Need garage door repair in ${city.name}? Same-day spring repair, opener repair, cable replacement & new door installation across ${city.name} and the East Bay. Call ${SITE.phoneDisplay}.`;
 const base = Astro.site?.href ?? 'https://example.com/';
-const jsonLd = breadcrumb([
-  { name: 'Home', url: base },
-  { name: city.name, url: new URL(cityUrl(city), base).href },
-]);
+const jsonLd = [
+  breadcrumb([
+    { name: 'Home', url: base },
+    { name: city.name, url: new URL(cityUrl(city), base).href },
+  ]),
+  faqPage(city.faqs),
+];
 ---
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <div class="container">
@@ -35,10 +44,10 @@ const jsonLd = breadcrumb([
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-copy">
-        <h1>Garage Door Services in {city.name}</h1>
+        <h1>Garage Door Repair in {place}</h1>
         <p class="lede">
-          Same-day garage door repair and installation for {city.name} homeowners — licensed,
-          insured, and upfront about pricing.
+          Same-day garage door repair, spring &amp; opener service, and new door installation for
+          {city.name} homeowners — licensed, insured, and upfront about pricing.
         </p>
         <div class="hero-cta">
           <a class="btn btn-call btn-lg" href={tel()}>📞 Call {SITE.phoneDisplay}</a>
@@ -48,11 +57,25 @@ const jsonLd = breadcrumb([
     </div>
   </section>
 
+  <section class="section">
+    <div class="container prose" style="max-width:820px;">
+      <h2>Trusted Garage Door Repair in {city.name}</h2>
+      <p>{city.intro}</p>
+      <p>
+        Explore our <a href="/garage-door-repair/">garage door repair services</a> or call
+        <a href={tel()}>{SITE.phoneDisplay}</a> for fast, local service in {city.name}.
+      </p>
+    </div>
+  </section>
+
   <ServiceCards
     city={city}
     title={`Garage Door Services We Offer in ${city.name}`}
     sub={`From broken springs to new doors — full-service garage door help in ${city.name}.`}
   />
+
+  <Neighborhoods cityName={city.name} neighborhoods={city.neighborhoods} />
+  <CommonIssues cityName={city.name} issues={city.issues} />
 
   <section class="section section-soft">
     <div class="container" style="max-width:720px;">
@@ -62,6 +85,8 @@ const jsonLd = breadcrumb([
     </div>
   </section>
 
+  <FaqSection faqs={city.faqs} title={`Garage Door Repair in ${city.name} — FAQs`} />
+  <NearbyCities cities={near} cityName={city.name} />
   <Reviews />
   <FinalCta
     heading={`Garage door help in ${city.name}, today.`}

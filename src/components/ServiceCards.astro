@@ -1,22 +1,29 @@
 ---
-import { SERVICES } from '../config/services';
+import { SERVICES, MATRIX_SERVICES } from '../config/services';
 import { serviceUrl, cityServiceUrl } from '../lib/urls';
 import type { City } from '../config/cities';
 
 interface Props {
-  /** If set, cards link to this service-in-city combo instead of the service hub. */
+  /** If set, cards link to each service in this city (combos); hub-only services are omitted. */
   city?: City;
   title?: string;
   sub?: string;
 }
-const { city, title = 'Our Garage Door Services', sub = 'From a snapped spring to a brand-new door, we do it all — fast.' } = Astro.props;
+const {
+  city,
+  title = 'Our Garage Door Services',
+  sub = 'From a snapped spring to a brand-new door, we do it all — fast.',
+} = Astro.props;
+
+// In a city context, show the per-city services (exclude the hub-only general page).
+const list = city ? MATRIX_SERVICES : SERVICES;
 ---
 <section class="section" id="services">
   <div class="container">
     <h2 class="section-title">{title}</h2>
     <p class="section-sub">{sub}</p>
     <div class="svc-grid">
-      {SERVICES.map((s) => (
+      {list.map((s) => (
         <a class="svc-card" href={city ? cityServiceUrl(s, city) : serviceUrl(s)}>
           <h3>{s.name}</h3>
           <p>{s.blurb}</p>

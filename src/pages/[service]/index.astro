@@ -2,12 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import QuoteForm from '../../components/QuoteForm.astro';
 import CityLinks from '../../components/CityLinks.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import Reviews from '../../components/Reviews.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import { SERVICES } from '../../config/services';
 import type { Service } from '../../config/services';
 import { SITE, tel } from '../../config/site';
-import { breadcrumb, serviceSchema } from '../../lib/schema';
+import { breadcrumb, faqPage, serviceSchema } from '../../lib/schema';
 import { serviceUrl } from '../../lib/urls';
 
 export function getStaticPaths() {
@@ -17,8 +19,8 @@ export function getStaticPaths() {
 interface Props { service: Service }
 const { service } = Astro.props;
 
-const title = `${service.name} in the ${SITE.region} | ${SITE.company}`;
-const description = `${service.blurb} ${SITE.company} provides ${service.name.toLowerCase()} across the ${SITE.region}. Call ${SITE.phoneDisplay} for same-day service.`;
+const title = `${service.name} | ${SITE.region} Same-Day Service`;
+const description = `${service.blurb} ${SITE.company} provides ${service.name.toLowerCase()} across the ${SITE.region} — licensed, insured, upfront pricing. Call ${SITE.phoneDisplay}.`;
 const base = Astro.site?.href ?? 'https://example.com/';
 const jsonLd = [
   breadcrumb([
@@ -26,6 +28,7 @@ const jsonLd = [
     { name: service.short, url: new URL(serviceUrl(service), base).href },
   ]),
   serviceSchema({ name: service.name, description: service.description, areaName: SITE.region }),
+  faqPage(service.faqs),
 ];
 ---
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
@@ -52,11 +55,21 @@ const jsonLd = [
       <div class="srow-text prose">
         <h2>{service.name}</h2>
         <p>{service.description}</p>
+        {service.sections.map((sec) => (
+          <Fragment>
+            <h2>{sec.h}</h2>
+            <p>{sec.body}</p>
+          </Fragment>
+        ))}
         <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
       </div>
       <div class="srow-photo"><img src={service.image} alt={service.imageAlt} loading="lazy" /></div>
     </div>
   </section>
+
+  {service.hubOnly && (
+    <ServiceCards title="Garage Door Services We Provide" sub="Specialized help for every part of your garage door system." />
+  )}
 
   <section class="section section-soft">
     <div class="container" style="max-width:720px;">
@@ -66,11 +79,14 @@ const jsonLd = [
     </div>
   </section>
 
+  <FaqSection faqs={service.faqs} title={`${service.name} — FAQs`} />
+
   <CityLinks
-    service={service}
-    title={`${service.short} across the ${SITE.region}`}
+    service={service.hubOnly ? undefined : service}
+    title={service.hubOnly ? `Serving the ${SITE.region}` : `${service.short} Across the ${SITE.region}`}
     sub="Choose your city for local service details:"
   />
+
   <Reviews />
   <FinalCta heading={`Need ${service.short.toLowerCase()}? We can help today.`} />
 </BaseLayout>

@@ -34,6 +34,18 @@ export function breadcrumb(items: { name: string; url: string }[]) {
   };
 }
 
+export function faqPage(faqs: { q: string; a: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+}
+
 export function serviceSchema(opts: { name: string; description: string; areaName: string }) {
   return {
     '@context': 'https://schema.org',

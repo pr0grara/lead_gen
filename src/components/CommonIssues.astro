@@ -1,0 +1,24 @@
+---
+import type { CityIssue } from '../config/cities';
+
+interface Props {
+  cityName: string;
+  issues: CityIssue[];
+}
+const { cityName, issues } = Astro.props;
+---
+{issues.length > 0 && (
+  <section class="section section-soft">
+    <div class="container">
+      <h2 class="section-title">Common Garage Door Issues in {cityName}</h2>
+      <div class="issue-grid">
+        {issues.map((it) => (
+          <div class="issue-card">
+            <h3>{it.title}</h3>
+            <p>{it.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,18 @@
+---
+interface Props {
+  cityName: string;
+  neighborhoods: string[];
+}
+const { cityName, neighborhoods } = Astro.props;
+---
+{neighborhoods.length > 0 && (
+  <section class="section section-sm">
+    <div class="container">
+      <h2 class="section-title">Neighborhoods We Serve in {cityName}</h2>
+      <p class="section-sub">Local garage door repair and installation across {cityName}, including:</p>
+      <ul class="chips">
+        {neighborhoods.map((n) => <li>{n}</li>)}
+      </ul>
+    </div>
+  </section>
+)}

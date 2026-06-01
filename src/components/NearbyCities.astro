@@ -1,0 +1,27 @@
+---
+import type { City } from '../config/cities';
+import type { Service } from '../config/services';
+import { cityUrl, cityServiceUrl } from '../lib/urls';
+
+interface Props {
+  cities: City[];
+  /** If set, links point to this service in each nearby city; else to the city hub. */
+  service?: Service;
+  cityName: string;
+}
+const { cities, service, cityName } = Astro.props;
+const what = service ? service.short.toLowerCase() : 'garage door service';
+---
+{cities.length > 0 && (
+  <section class="section section-sm">
+    <div class="container">
+      <h2 class="section-title">Nearby Cities We Serve</h2>
+      <p class="section-sub">We also provide {what} near {cityName}:</p>
+      <ul class="cities nearby-cities">
+        {cities.map((c) => (
+          <li><a href={service ? cityServiceUrl(service, c) : cityUrl(c)}>{c.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
