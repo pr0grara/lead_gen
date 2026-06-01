@@ -38,7 +38,7 @@ export const SITE: SiteConfig = {
   trade: 'garage door repair',
   phone: '+15106942210',
   phoneDisplay: '(510) 694-2210',
-  email: 'hello@example.com',
+  email: 'hello@eastbaygaragedoorrepair.com',
   region: 'East Bay',
   url: 'https://eastbaygaragedoorrepair.com',
   formEndpoint: '',
