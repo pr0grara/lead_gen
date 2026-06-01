@@ -6,6 +6,15 @@
 // intent is served by the city hub (/service-area/[city]/), so we don't create
 // /garage-door-repair/[city]/ pages that would compete with it.
 // ---------------------------------------------------------------------------
+import type { ImageMetadata } from 'astro';
+import garageDoorRepairImg from '../assets/real_photos/baddoor_1.jpeg';
+import springRepairImg from '../assets/real_photos/spring_2.jpeg';
+import openerRepairImg from '../assets/services/opener-repair.webp';
+import cableRepairImg from '../assets/services/cable-repair.webp';
+import offTrackRepairImg from '../assets/real_photos/outoftrack_5.jpeg';
+import newDoorImg from '../assets/services/new-door-installation.webp';
+import emergencyRepairImg from '../assets/real_photos/carhit_1.jpeg';
+
 export interface Faq {
   q: string;
   a: string;
@@ -32,7 +41,7 @@ export interface Service {
   points: string[];
   /** Service-level FAQs (rendered + FAQ schema on the hub page) */
   faqs: Faq[];
-  image: string;
+  image: ImageMetadata;
   imageAlt: string;
   /** Hub-only: do not generate per-city combo pages. */
   hubOnly?: boolean;
@@ -87,7 +96,7 @@ export const SERVICES: Service[] = [
         a: 'Grinding, popping, or jerking usually means a spring, cable, or roller is failing. Stop using the door and call us — operating a door with a failing spring can be dangerous.',
       },
     ],
-    image: 'https://loremflickr.com/800/600/garage,door?lock=20',
+    image: garageDoorRepairImg,
     imageAlt: 'Technician repairing a residential garage door',
     hubOnly: true,
   },
@@ -132,7 +141,7 @@ export const SERVICES: Service[] = [
         a: 'You should not. Without the spring the door can weigh 150–300 lbs and may slam shut. Disconnect the opener and call for same-day service.',
       },
     ],
-    image: 'https://loremflickr.com/800/600/garage,door?lock=21',
+    image: springRepairImg,
     imageAlt: 'Technician replacing a garage door torsion spring',
   },
   {
@@ -177,7 +186,7 @@ export const SERVICES: Service[] = [
         a: 'Yes — either by installing a Wi-Fi opener or, in many cases, adding a compatible smart controller to your existing opener.',
       },
     ],
-    image: 'https://loremflickr.com/800/600/garage,door?lock=22',
+    image: openerRepairImg,
     imageAlt: 'Garage door opener motor being serviced',
   },
   {
@@ -213,7 +222,7 @@ export const SERVICES: Service[] = [
         a: 'Often, yes. A snapped spring can throw a cable off its drum, and both wear over similar timeframes. We check the whole system on every visit.',
       },
     ],
-    image: 'https://loremflickr.com/800/600/garage,door,cable?lock=25',
+    image: cableRepairImg,
     imageAlt: 'Garage door lift cable and drum being repaired',
   },
   {
@@ -249,7 +258,7 @@ export const SERVICES: Service[] = [
         a: 'Replace worn rollers, keep the tracks clear and brackets tight, and have the door balanced annually. We cover all of that on a repair visit.',
       },
     ],
-    image: 'https://loremflickr.com/800/600/garage,door?lock=24',
+    image: offTrackRepairImg,
     imageAlt: 'Garage door track and rollers being realigned',
   },
   {
@@ -286,7 +295,7 @@ export const SERVICES: Service[] = [
         a: 'For attached garages and rooms above them, an insulated door noticeably reduces heat transfer — a real benefit in the hotter inland East Bay.',
       },
     ],
-    image: 'https://loremflickr.com/800/600/garage,door?lock=23',
+    image: newDoorImg,
     imageAlt: 'Newly installed residential garage door',
   },
   {
@@ -322,7 +331,7 @@ export const SERVICES: Service[] = [
         a: 'Yes — that\'s exactly the kind of urgent call we prioritize. We\'ll safely release and operate the door so you can get on with your day.',
       },
     ],
-    image: 'https://loremflickr.com/800/600/garage,door?lock=26',
+    image: emergencyRepairImg,
     imageAlt: 'Technician responding to an emergency garage door repair',
     emergency: true,
   },

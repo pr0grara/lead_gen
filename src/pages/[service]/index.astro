@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import QuoteForm from '../../components/QuoteForm.astro';
 import CityLinks from '../../components/CityLinks.astro';
@@ -9,6 +10,7 @@ import FinalCta from '../../components/FinalCta.astro';
 import { SERVICES } from '../../config/services';
 import type { Service } from '../../config/services';
 import { SITE, tel } from '../../config/site';
+import { getHeroUrl } from '../../lib/images';
 import { breadcrumb, faqPage, serviceSchema } from '../../lib/schema';
 import { serviceUrl } from '../../lib/urls';
 
@@ -30,13 +32,14 @@ const jsonLd = [
   serviceSchema({ name: service.name, description: service.description, areaName: SITE.region }),
   faqPage(service.faqs),
 ];
+const heroUrl = await getHeroUrl();
 ---
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <div class="container">
     <nav class="crumbs"><a href="/">Home</a><span>/</span>{service.short}</nav>
   </div>
 
-  <section class="hero hero-single">
+  <section class="hero hero-single" style={`--hero-img: url(${heroUrl})`}>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-copy">
@@ -63,7 +66,7 @@ const jsonLd = [
         ))}
         <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
       </div>
-      <div class="srow-photo"><img src={service.image} alt={service.imageAlt} loading="lazy" /></div>
+      <div class="srow-photo"><Image src={service.image} alt={service.imageAlt} width={800} loading="lazy" /></div>
     </div>
   </section>
 

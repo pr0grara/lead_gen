@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import QuoteForm from '../../components/QuoteForm.astro';
 import ServiceCards from '../../components/ServiceCards.astro';
@@ -10,6 +11,7 @@ import type { Service } from '../../config/services';
 import { CITIES, nearbyCities } from '../../config/cities';
 import type { City } from '../../config/cities';
 import { SITE, tel } from '../../config/site';
+import { getHeroUrl } from '../../lib/images';
 import { breadcrumb, faqPage, serviceSchema } from '../../lib/schema';
 import { serviceUrl, cityServiceUrl, cityUrl } from '../../lib/urls';
 
@@ -45,6 +47,9 @@ const jsonLd = [
   serviceSchema({ name: `${service.name} in ${city.name}`, description: service.description, areaName: place }),
   faqPage(comboFaqs),
 ];
+const heroUrl = await getHeroUrl(city.heroImage);
+// Per-city photo override (real local job photo), falling back to the service default.
+const servicePhoto = city.serviceImages?.[service.slug] ?? service.image;
 ---
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <div class="container">
@@ -53,7 +58,7 @@ const jsonLd = [
     </nav>
   </div>
 
-  <section class="hero hero-single">
+  <section class="hero hero-single" style={`--hero-img: url(${heroUrl})`}>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-copy">
@@ -84,7 +89,7 @@ const jsonLd = [
         </p>
         <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
       </div>
-      <div class="srow-photo"><img src={service.image} alt={`${service.imageAlt} in ${city.name}`} loading="lazy" /></div>
+      <div class="srow-photo"><Image src={servicePhoto} alt={`${service.imageAlt} in ${city.name}`} width={800} loading="lazy" /></div>
     </div>
   </section>
 

@@ -6,12 +6,14 @@ import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 import Reviews from '../components/Reviews.astro';
 import FinalCta from '../components/FinalCta.astro';
 import { SITE, tel } from '../config/site';
+import { getHeroUrl } from '../lib/images';
 
 const title = `${SITE.company} — ${SITE.tagline} in the ${SITE.region}`;
 const description = `Fast, reliable ${SITE.trade} and installation across the ${SITE.region}. Same-day mobile service, licensed technicians, upfront pricing. Call ${SITE.phoneDisplay}.`;
+const heroUrl = await getHeroUrl();
 ---
 <BaseLayout title={title} description={description}>
-  <section class="hero">
+  <section class="hero" style={`--hero-img: url(${heroUrl})`}>
     <div class="hero-overlay"></div>
     <div class="container hero-grid">
       <div class="hero-copy">

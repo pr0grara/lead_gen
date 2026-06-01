@@ -70,7 +70,8 @@ p { margin: 0 0 1em; }
 /* Hero */
 .hero {
   position: relative; color: #fff;
-  background: url("https://loremflickr.com/1600/900/garage,door?lock=20") center/cover no-repeat, var(--navy);
+  /* --hero-img is set inline per page from an optimized asset (see src/lib/images.ts). */
+  background: var(--hero-img, none) center/cover no-repeat, var(--navy);
   padding: 72px 0 84px;
 }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(15, 39, 65, 0.94) 38%, rgba(15, 39, 65, 0.7) 100%); }

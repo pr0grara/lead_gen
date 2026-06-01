@@ -11,6 +11,7 @@ import FinalCta from '../../components/FinalCta.astro';
 import { CITIES, nearbyCities } from '../../config/cities';
 import type { City } from '../../config/cities';
 import { SITE, tel } from '../../config/site';
+import { getHeroUrl } from '../../lib/images';
 import { breadcrumb, faqPage } from '../../lib/schema';
 import { cityUrl } from '../../lib/urls';
 
@@ -34,13 +35,14 @@ const jsonLd = [
   ]),
   faqPage(city.faqs),
 ];
+const heroUrl = await getHeroUrl(city.heroImage);
 ---
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <div class="container">
     <nav class="crumbs"><a href="/">Home</a><span>/</span>Service Area<span>/</span>{city.name}</nav>
   </div>
 
-  <section class="hero hero-single">
+  <section class="hero hero-single" style={`--hero-img: url(${heroUrl})`}>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-copy">
