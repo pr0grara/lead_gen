@@ -7,6 +7,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: process.env.SITE_URL || 'https://eastbaygaragedoorrepair.com',
   trailingSlash: 'ignore',
+  // Inline the (small) stylesheet so first paint doesn't wait on a CSS request.
+  build: { inlineStylesheets: 'always' },
   integrations: [
     sitemap({
       // Keep noindex legal pages out of the sitemap.

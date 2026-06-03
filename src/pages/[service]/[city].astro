@@ -51,7 +51,7 @@ const heroUrl = await getHeroUrl(city.heroImage);
 // Per-city photo override (real local job photo), falling back to the service default.
 const servicePhoto = city.serviceImages?.[service.slug] ?? service.image;
 ---
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} heroImageUrl={heroUrl}>
   <div class="container">
     <nav class="crumbs">
       <a href="/">Home</a><span>/</span><a href={serviceUrl(service)}>{service.short}</a><span>/</span>{city.name}

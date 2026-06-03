@@ -37,7 +37,7 @@ const jsonLd = [
 ];
 const heroUrl = await getHeroUrl(city.heroImage);
 ---
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} heroImageUrl={heroUrl}>
   <div class="container">
     <nav class="crumbs"><a href="/">Home</a><span>/</span>Service Area<span>/</span>{city.name}</nav>
   </div>

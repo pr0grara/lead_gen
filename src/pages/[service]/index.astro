@@ -34,7 +34,7 @@ const jsonLd = [
 ];
 const heroUrl = await getHeroUrl();
 ---
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} heroImageUrl={heroUrl}>
   <div class="container">
     <nav class="crumbs"><a href="/">Home</a><span>/</span>{service.short}</nav>
   </div>

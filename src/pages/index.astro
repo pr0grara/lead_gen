@@ -12,7 +12,7 @@ const title = `${SITE.company} — ${SITE.tagline} in the ${SITE.region}`;
 const description = `Fast, reliable ${SITE.trade} and installation across the ${SITE.region}. Same-day mobile service, licensed technicians, upfront pricing. Call ${SITE.phoneDisplay}.`;
 const heroUrl = await getHeroUrl();
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} heroImageUrl={heroUrl}>
   <section class="hero" style={`--hero-img: url(${heroUrl})`}>
     <div class="hero-overlay"></div>
     <div class="container hero-grid">
