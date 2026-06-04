@@ -39,17 +39,6 @@ const {
       <textarea name="message" rows="3" placeholder="e.g. broken spring, door won't open…"></textarea>
     </label>
 
-    <label class="consent">
-      <input type="checkbox" name="consent" value="yes" required />
-      <span class="consent-text">
-        By submitting, I agree to be contacted by {SITE.company} at the phone number and email
-        provided, including by automated dialing technology, prerecorded messages, and SMS, for
-        service and marketing purposes. Consent is not a condition of purchase. Msg &amp; data rates
-        may apply; reply STOP to opt out. See our <a href="/terms">Terms</a> and
-        <a href="/privacy">Privacy Policy</a>.
-      </span>
-    </label>
-
     <button type="submit" class="btn btn-primary btn-lg btn-block">Get My Free Quote</button>
     <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
     <p class="card-sub" style="text-align:center;margin:12px 0 0;font-size:.85rem;">
@@ -79,9 +68,7 @@ const {
     if (!data.name || !data.name.trim()) return setStatus('Please enter your name.', 'error');
     if (!EMAIL_RE.test((data.email || '').trim()))
       return setStatus('Please enter a valid email address.', 'error');
-    if (data.consent !== 'yes')
-      return setStatus('Please agree to be contacted to continue.', 'error');
-
+  
     const endpoint = form.getAttribute('data-endpoint');
     if (!endpoint) {
       return setStatus('Online form isn’t set up yet — please call us instead.', 'error');
