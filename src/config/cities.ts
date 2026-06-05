@@ -7,7 +7,7 @@ import heroFamily from '../assets/hero/hero-family.webp';
 // East Bay service-area cities. Each entry carries genuinely localized content
 // (intro, neighborhoods, common issues, FAQs) so city pages read as written for
 // that specific city — not a name-swapped template. `nearby` references other
-// city slugs in this list for internal linking.
+// city slugs in this list for internal linking. Array order = display order.
 // ---------------------------------------------------------------------------
 export interface CityIssue {
   title: string;
@@ -39,7 +39,7 @@ export interface City {
 }
 
 export const CITIES: City[] = [
-  // ----- Priority 1: Berkeley -----
+  // ----- Berkeley -----
   {
     slug: 'berkeley',
     name: 'Berkeley',
@@ -63,7 +63,7 @@ export const CITIES: City[] = [
     ],
   },
 
-  // ----- Priority 2: Oakland -----
+  // ----- Oakland -----
   {
     slug: 'oakland',
     name: 'Oakland',
@@ -77,7 +77,7 @@ export const CITIES: City[] = [
       { title: 'Security after a door failure', body: 'A door stuck open is a security concern. We prioritize getting Oakland homes secured and the door operable quickly.' },
       { title: 'Aged openers in flatland bungalows', body: 'Many Fruitvale, Laurel, and Glenview homes run 15–20+ year-old openers without rolling-code security or battery backup — prime candidates for a quiet, modern upgrade.' },
     ],
-    nearby: ['berkeley', 'alameda', 'san-leandro'],
+    nearby: ['berkeley', 'alameda', 'richmond'],
     heroImage: heroFamily,
     faqs: [
       { q: 'Do you offer same-day garage door repair in Oakland?', a: 'Yes — same-day service is available across Oakland for common repairs, including broken springs, cables, and opener problems.' },
@@ -87,7 +87,7 @@ export const CITIES: City[] = [
     ],
   },
 
-  // ----- Priority 3: Alameda -----
+  // ----- Alameda -----
   {
     slug: 'alameda',
     name: 'Alameda',
@@ -101,7 +101,7 @@ export const CITIES: City[] = [
       { title: 'Detached garages on narrow lots', body: 'Many older Alameda homes have detached alley garages with aging tracks and doors that need realignment or replacement.' },
       { title: 'Weather sealing', body: 'Damp coastal conditions make a well-sealed, insulated door worth it — we replace worn weather seals and bottom gaskets.' },
     ],
-    nearby: ['oakland', 'san-leandro', 'berkeley'],
+    nearby: ['oakland', 'berkeley', 'richmond'],
     heroImage: heroModern,
     faqs: [
       { q: 'Does the salt air in Alameda really affect my garage door?', a: 'Yes — coastal moisture corrodes springs, cables, and rollers faster. We recommend rust-resistant hardware and periodic inspections for island homes.' },
@@ -111,7 +111,79 @@ export const CITIES: City[] = [
     ],
   },
 
-  // ----- Priority 4: Walnut Creek -----
+  // ----- Orinda (Lamorinda) -----
+  {
+    slug: 'orinda',
+    name: 'Orinda',
+    state: 'CA',
+    intro:
+      "Orinda sits just over the Caldecott Tunnel in the wooded hills of Lamorinda, where winding roads, steep lots, and large custom and mid-century homes define the garage door work we do. Neighborhoods like Sleepy Hollow, Glorietta, Orinda Downs, and the Country Club area have long, steep driveways and detached or side-entry garages, and the mature tree canopy keeps many lots damp and shaded — which accelerates cable rust and roller wear. Summers inland from the tunnel run hot, stressing opener motors and electronics, and many Orinda homes have heavier wood or custom doors that need correctly sized, high-cycle springs. Because much of Orinda sits in a high fire-risk zone, a door and opener that reliably open — with battery backup during a power shut-off — genuinely matter. We provide same-day garage door repair across Orinda: springs, cables, rollers, openers, off-track doors, and new custom-door installations, with upfront, flat-rate pricing and licensed, insured technicians who know the hill streets. Whether it's a snapped spring in Glorietta or a quiet new opener in Sleepy Hollow, we'll get your door running smoothly and safely again.",
+    neighborhoods: ['Orinda Village', 'Glorietta', 'Sleepy Hollow', 'Orinda Downs', 'Country Club', 'Ivy Drive'],
+    landmarks: ['Orinda Theatre', 'Lake Cascade', 'San Pablo Reservoir', 'Wagner Ranch', 'Orinda BART'],
+    issues: [
+      { title: 'Long, steep hillside driveways', body: 'Sleepy Hollow and Glorietta homes have long, steep driveways and side-entry garages that put extra load on openers and wear rollers faster.' },
+      { title: 'Rust in shaded, wooded lots', body: "Orinda's damp tree canopy keeps lots shaded and moist, accelerating cable and roller corrosion on many homes." },
+      { title: 'Heavy wood & custom doors', body: 'Larger custom homes need correctly sized high-cycle springs and reliable openers — with battery backup that matters in a fire-risk area.' },
+    ],
+    nearby: ['lafayette', 'moraga', 'walnut-creek'],
+    heroImage: heroFamily,
+    faqs: [
+      { q: 'Do you offer same-day garage door repair in Orinda?', a: 'Yes — same-day service is available across Orinda for common repairs like springs, cables, and openers, subject to availability.' },
+      { q: 'Can you service the hill neighborhoods like Sleepy Hollow and Glorietta?', a: 'Yes. We know the winding Orinda hill streets and come equipped for long, steep driveways and side-entry garages.' },
+      { q: 'My Orinda home has a heavy wood or custom door — can you repair it?', a: 'Yes — we size high-cycle springs for heavier custom and wood doors and service or replace the matching hardware.' },
+      { q: 'Can you install an opener with battery backup for power shut-offs?', a: 'Definitely — we install quiet belt-drive openers with battery backup (required on new installs in California) so your door still opens during an outage.' },
+    ],
+  },
+
+  // ----- Lafayette (Lamorinda) -----
+  {
+    slug: 'lafayette',
+    name: 'Lafayette',
+    state: 'CA',
+    intro:
+      "Lafayette is the heart of Lamorinda — a leafy, hilly community of established ranch homes and newer custom builds spread across Happy Valley, Burton Valley, Reliez Valley, and the streets around downtown and the Lafayette Reservoir. Many homes here sit on sloped, wooded lots with long driveways and side- or rear-entry garages, so worn rollers, frayed cables, and openers laboring against gravity are common calls. The hot inland summers behind the hills are tough on opener electronics, and Lafayette's older ranch homes frequently still run original springs and single-layer doors that are well past their prime and ready for a quieter, insulated upgrade. We provide same-day garage door repair throughout Lafayette — spring and cable replacement, opener repair and installation, off-track and roller fixes, and new custom doors — with upfront, flat-rate pricing and licensed, insured technicians who are comfortable on the hill streets. From a broken spring in Happy Valley to a new insulated door in Burton Valley, we carry the parts to finish most repairs on the first visit and get your door running smooth and quiet again.",
+    neighborhoods: ['Downtown Lafayette', 'Happy Valley', 'Burton Valley', 'Reliez Valley', 'Upper Happy Valley', 'Trail Neighborhood'],
+    landmarks: ['Lafayette Reservoir', 'Lafayette BART', 'Lafayette-Moraga Trail', 'Mount Diablo views'],
+    issues: [
+      { title: 'Sloped, wooded lots', body: 'Long driveways and side-entry garages on Lafayette hill lots add load on openers and wear rollers faster.' },
+      { title: 'Heat-stressed openers', body: 'Hot summers behind the hills stress opener motors and logic boards, especially on west-facing garages.' },
+      { title: 'Aging ranch-home doors', body: 'Older ranch homes often still run original springs and thin single-layer doors that are due for an insulated upgrade.' },
+    ],
+    nearby: ['orinda', 'moraga', 'walnut-creek'],
+    heroImage: heroModern,
+    faqs: [
+      { q: 'Do you offer same-day garage door repair in Lafayette?', a: 'Yes — same-day service is available throughout Lafayette for common repairs like springs, cables, and openers.' },
+      { q: 'Can you service hill homes in Happy Valley and Burton Valley?', a: 'Yes. We regularly work Lafayette\'s sloped, wooded lots and come prepared for long, steep driveways.' },
+      { q: 'My old ranch home still has its original door — repair or replace?', a: "We'll give you an honest assessment. Often the springs and hardware can be repaired; a thin original door is often worth replacing with a quieter, insulated one." },
+      { q: 'Can you install a quieter opener in Lafayette?', a: 'Definitely — we install quiet belt-drive Wi-Fi openers with battery backup to replace older, noisier units.' },
+    ],
+  },
+
+  // ----- Moraga (Lamorinda) -----
+  {
+    slug: 'moraga',
+    name: 'Moraga',
+    state: 'CA',
+    intro:
+      "Moraga rounds out Lamorinda — a quiet, family-oriented town tucked into the hills around Saint Mary's College, with neighborhoods like Rheem Valley, Sanders Ranch, Campolindo, and the Moraga Country Club. Most homes are mid-century and newer single-family houses on sloped, wooded lots, so the garage door issues here track the rest of the hills: long driveways and side-entry garages that work openers harder, damp tree-shaded lots that rust cables and rollers, and hot inland summers that wear opener electronics. Many of Moraga's original homes are now decades old and running tired springs and aging openers that are ready for replacement. We provide same-day garage door repair across Moraga — spring and cable replacement, opener repair and installation, off-track and roller repair, and new insulated and custom doors — with upfront, flat-rate pricing and licensed, insured technicians who know the area's hill roads. Whether it's a snapped spring in Rheem Valley or a quiet new opener in Campolindo, we'll get your door balanced, quiet, and working again — usually the same day you call.",
+    neighborhoods: ['Rheem Valley', 'Sanders Ranch', 'Campolindo', 'Moraga Country Club', 'Moraga Center', 'Bollinger Canyon'],
+    landmarks: ["Saint Mary's College", 'Moraga Commons Park', 'Rheem Theatre', 'Lafayette-Moraga Trail'],
+    issues: [
+      { title: 'Hillside driveways', body: 'Sloped lots and side-entry garages across Moraga put extra load on openers and rollers over time.' },
+      { title: 'Rust in shaded lots', body: 'Damp, wooded Moraga lots accelerate cable and roller corrosion, especially on north-facing and tree-shaded homes.' },
+      { title: 'Aging original hardware', body: 'Decades-old springs and openers on Moraga\'s original homes are common failure points ready for replacement.' },
+    ],
+    nearby: ['orinda', 'lafayette', 'walnut-creek'],
+    heroImage: heroFamily,
+    faqs: [
+      { q: 'Do you offer same-day garage door repair in Moraga?', a: 'Yes — same-day service is available across Moraga for common repairs like springs, cables, and openers, subject to availability.' },
+      { q: 'Can you service the hill neighborhoods like Sanders Ranch and Campolindo?', a: 'Yes. We know Moraga\'s hill roads and come equipped for sloped lots and side-entry garages.' },
+      { q: 'My springs and opener are decades old — can you replace them?', a: 'Definitely — we replace springs in matched pairs and install quiet belt-drive openers with battery backup.' },
+      { q: 'Do you install new insulated or custom doors in Moraga?', a: 'Yes — we help you choose the right style and R-value, install it, and haul away the old door.' },
+    ],
+  },
+
+  // ----- Walnut Creek -----
   {
     slug: 'walnut-creek',
     name: 'Walnut Creek',
@@ -125,7 +197,7 @@ export const CITIES: City[] = [
       { title: 'Worn springs on large double doors', body: 'Bigger suburban homes mean heavier two-car doors that wear springs faster — a common Northgate and Walnut Heights repair.' },
       { title: 'Quiet, reliable doors for Rossmoor', body: 'Rossmoor residents value quiet belt-drive openers with battery backup so an outage never leaves a car stuck.' },
     ],
-    nearby: ['concord', 'pleasanton', 'dublin'],
+    nearby: ['lafayette', 'concord', 'pleasanton'],
     heroImage: heroFamily,
     faqs: [
       { q: 'Do you offer same-day garage door repair in Walnut Creek?', a: 'Yes — same-day service is available throughout Walnut Creek, including Rossmoor and Northgate, for common repairs.' },
@@ -135,7 +207,7 @@ export const CITIES: City[] = [
     ],
   },
 
-  // ----- Priority 5: Concord -----
+  // ----- Concord -----
   {
     slug: 'concord',
     name: 'Concord',
@@ -159,76 +231,7 @@ export const CITIES: City[] = [
     ],
   },
 
-  // ----- Priority 6: Fremont -----
-  {
-    slug: 'fremont',
-    name: 'Fremont',
-    state: 'CA',
-    intro:
-      "Fremont spans five historic districts — Niles, Centerville, Irvington, Mission San Jose, and Warm Springs — and a huge range of homes, from older bungalows in Niles to large two-story houses in Mission San Jose and newer construction near Warm Springs and Ardenwood. Most Fremont homes have attached two-car garages with double doors, so we see a lot of worn springs, heavy doors that have knocked openers out of alignment, and homeowners ready to upgrade to quiet, Wi-Fi openers with battery backup. Up in the Mission San Jose hills, longer and steeper driveways add wear, while the flatter neighborhoods near Lake Elizabeth and Central Park mostly need spring, cable, and opener service on aging hardware. We provide same-day garage door repair across all of Fremont with upfront pricing and licensed, insured technicians, and we carry the parts to handle most repairs in one visit. From a broken spring in Centerville to a new insulated door in Warm Springs, we'll get your garage working smoothly and quietly again.",
-    neighborhoods: ['Niles', 'Centerville', 'Irvington', 'Mission San Jose', 'Warm Springs', 'Ardenwood'],
-    landmarks: ['Mission Peak', 'Niles Canyon', 'Central Park & Lake Elizabeth', 'Mission San Jose'],
-    issues: [
-      { title: 'Heavy double doors wearing springs', body: 'Fremont\'s prevalent two-car doors are heavy and cycle often, wearing springs and pulling openers out of alignment.' },
-      { title: 'Hillside driveways in Mission San Jose', body: 'Longer, steeper driveways add load on openers and accelerate roller and cable wear.' },
-      { title: 'Opener upgrades', body: 'Many homes are ready to replace older openers with quiet belt-drive units featuring Wi-Fi and battery backup.' },
-    ],
-    nearby: ['union-city', 'hayward', 'pleasanton'],
-    faqs: [
-      { q: 'Do you offer same-day garage door repair in Fremont?', a: 'Yes — same-day service is available across all five Fremont districts for common repairs.' },
-      { q: 'Do you service Mission San Jose and the hill neighborhoods?', a: 'Yes, we regularly serve Mission San Jose and come prepared for longer, steeper driveways.' },
-      { q: 'Can you install a quiet opener with smartphone control?', a: 'Definitely — we install quiet belt-drive Wi-Fi openers with battery backup, which California requires on new installs.' },
-      { q: 'My double garage door is getting loud and heavy — what\'s wrong?', a: 'Usually worn springs and rollers. We\'ll inspect, rebalance, and replace what\'s needed so it runs smoothly and quietly again.' },
-    ],
-  },
-
-  // ----- Priority 7: Hayward -----
-  {
-    slug: 'hayward',
-    name: 'Hayward',
-    state: 'CA',
-    intro:
-      "Hayward stretches from the bay flats up into the Hayward Hills, and the housing — and the garage door issues — vary just as much. The hills and the Hayward fault that runs through town mean some homes experience settling that can pull doors and tracks out of alignment over time. Older neighborhoods around Downtown Hayward, Cherryland, and Mt. Eden have aging doors, springs, and openers that have simply worn out, while Fairway Park, Southgate, and the Hayward Hills mix mid-century and newer homes with attached two-car garages. We handle the full range here: snapped springs, frayed cables, off-track doors, dead or noisy openers, and full door replacements. Same-day garage door repair is available throughout Hayward with upfront, flat-rate pricing and licensed, insured technicians, and we keep our trucks stocked to finish most repairs on the first visit. Whether your door went off-track in the hills or your opener finally quit near CSU East Bay, we'll diagnose the real problem and get your garage running safely again.",
-    neighborhoods: ['Hayward Hills', 'Mt. Eden', 'Fairway Park', 'Southgate', 'Downtown Hayward', 'Cherryland'],
-    landmarks: ['CSU East Bay', 'Hayward Japanese Gardens', 'Garin Regional Park'],
-    issues: [
-      { title: 'Settling and off-track doors', body: 'Hillside lots and ground movement near the Hayward fault can pull tracks out of alignment, leaving doors off-track.' },
-      { title: 'Worn hardware on older homes', body: 'Downtown, Cherryland, and Mt. Eden have many older homes with springs, cables, and openers past their service life.' },
-      { title: 'Heavy attached two-car doors', body: 'Fairway Park and Southgate homes commonly have heavy double doors that wear springs and rollers.' },
-    ],
-    nearby: ['san-leandro', 'castro-valley', 'union-city'],
-    faqs: [
-      { q: 'Do you offer same-day garage door repair in Hayward?', a: 'Yes — same-day service is available throughout Hayward, from the flats to the hills, for common repairs.' },
-      { q: 'My garage door keeps going off-track — is it the settling?', a: 'It can be. Ground movement and worn rollers both cause off-track doors. We realign the track, replace rollers, and check the balance.' },
-      { q: 'Do you service the Hayward Hills?', a: 'Yes, we regularly work the hill neighborhoods and come equipped for steeper driveways.' },
-      { q: 'How fast can you get to me in Hayward?', a: 'For urgent issues we prioritize same-day response across Hayward, subject to availability.' },
-    ],
-  },
-
-  // ----- Priority 8: San Leandro -----
-  {
-    slug: 'san-leandro',
-    name: 'San Leandro',
-    state: 'CA',
-    intro:
-      "San Leandro is mostly comfortable mid-century neighborhoods — Broadmoor, Estudillo Estates, Bal, and Washington Manor — where many homes still have their original-era garage doors, springs, and openers. After 50–70 years, that hardware is well past due, so spring and opener failures are the calls we get most here. Closer to the bay and the San Leandro Marina, neighborhoods like Marina Faire and Bay-O-Vista see more marine moisture, which speeds up cable and roller corrosion. Around Downtown San Leandro and Bayfair, there's a mix of older single-family homes and newer townhomes. We replace springs and cables, repair and upgrade openers, fix off-track doors, and install new insulated doors across the city. Same-day garage door repair is available throughout San Leandro with upfront pricing and licensed, insured technicians, and our trucks carry the common parts to wrap up most repairs in a single visit. Whether it's a snapped spring in Estudillo Estates or a corroded cable near the Marina, we'll get your door balanced and running again.",
-    neighborhoods: ['Broadmoor', 'Estudillo Estates', 'Bal', 'Washington Manor', 'Marina Faire', 'Bay-O-Vista'],
-    landmarks: ['San Leandro Marina', 'Bayfair Center', 'Lake Chabot'],
-    issues: [
-      { title: 'Original mid-century hardware', body: 'Many San Leandro homes still run original springs and openers from the 1950s–60s that are decades past their cycle life.' },
-      { title: 'Bayside cable corrosion', body: 'Neighborhoods near the Marina get more marine moisture, which corrodes cables and rollers faster.' },
-      { title: 'Aging openers', body: 'Older openers without rolling-code security or battery backup are common upgrade candidates.' },
-    ],
-    nearby: ['oakland', 'hayward', 'alameda'],
-    faqs: [
-      { q: 'Do you offer same-day garage door repair in San Leandro?', a: 'Yes — same-day service is available across San Leandro for common repairs like springs, cables, and openers.' },
-      { q: 'My San Leandro home has its original 1950s garage door — can you help?', a: "Yes. We repair vintage doors and hardware and will tell you honestly when replacement is the better value." },
-      { q: 'Do homes near the Marina need special hardware?', a: 'Bayside moisture corrodes cables and rollers faster, so we often recommend rust-resistant parts for homes near the water.' },
-      { q: 'Can you upgrade my old opener?', a: 'Definitely — we install quiet belt-drive openers with Wi-Fi and battery backup to replace aging units.' },
-    ],
-  },
-
-  // ----- Priority 9: Pleasanton -----
+  // ----- Pleasanton -----
   {
     slug: 'pleasanton',
     name: 'Pleasanton',
@@ -242,7 +245,7 @@ export const CITIES: City[] = [
       { title: 'Heat-stressed openers', body: 'Hot Tri-Valley summers wear opener motors and boards, especially on west-facing garages.' },
       { title: 'High-use springs on newer doors', body: 'Frequent daily cycling wears springs even on newer high-cycle doors over time.' },
     ],
-    nearby: ['dublin', 'livermore', 'fremont'],
+    nearby: ['dublin', 'livermore', 'castro-valley'],
     faqs: [
       { q: 'Do you offer same-day garage door repair in Pleasanton?', a: 'Yes — same-day service is available across Pleasanton, including Ruby Hill and the newer developments.' },
       { q: 'I have a three-car garage — can you service all the doors?', a: 'Absolutely. We routinely service and upgrade multiple doors and openers on the same visit.' },
@@ -251,7 +254,7 @@ export const CITIES: City[] = [
     ],
   },
 
-  // ----- Priority 10: Livermore -----
+  // ----- Livermore -----
   {
     slug: 'livermore',
     name: 'Livermore',
@@ -265,7 +268,7 @@ export const CITIES: City[] = [
       { title: 'Dust in tracks and rollers', body: 'Dry, dusty conditions toward the vineyards work into tracks and rollers, increasing wear and noise.' },
       { title: 'Large estate doors', body: 'Wine-country estates often have oversized or multiple doors that need heavier-duty springs and hardware.' },
     ],
-    nearby: ['pleasanton', 'dublin', 'hayward'],
+    nearby: ['pleasanton', 'dublin', 'castro-valley'],
     faqs: [
       { q: 'Do you offer same-day garage door repair in Livermore?', a: 'Yes — same-day service is available throughout Livermore for common repairs, subject to availability.' },
       { q: 'Why does my opener keep failing in the summer?', a: "Livermore's extreme heat stresses opener motors and electronics. We diagnose whether it's a repair or a replacement and quote it upfront." },
@@ -274,28 +277,7 @@ export const CITIES: City[] = [
     ],
   },
 
-  // ----- Remaining East Bay cities (full localized content) -----
-  {
-    slug: 'richmond',
-    name: 'Richmond',
-    state: 'CA',
-    intro:
-      "Richmond stretches from the bayfront at Point Richmond and Marina Bay across the flats of the Iron Triangle and Richmond Annex up into the eastern hills along the El Cerrito border, May Valley, and Richmond Heights — and that range shows up in its garage doors. Closest to the water, in Point Richmond and Marina Bay, salt-laden bay air corrodes springs, cables, and rollers faster than inland, so rust-related failures are common. The older homes of the Iron Triangle and central Richmond frequently have detached garages with original hardware, tired springs, and tracks knocked out of alignment over the decades. Newer Hilltop and Marina Bay homes mostly run standard attached two-car doors that need routine spring, opener, and roller service. We provide same-day garage door repair across all of Richmond — springs, cables, rollers, openers, off-track doors, and full installations — with upfront, flat-rate pricing and licensed, insured technicians. Our trucks carry rust-resistant parts suited to a bayfront city, and we finish most repairs on the first visit. Whether it's a corroded cable near the Marina or a snapped spring in the Annex, we'll get your door balanced and running again.",
-    neighborhoods: ['Point Richmond', 'Marina Bay', 'Hilltop', 'Richmond Annex', 'Iron Triangle', 'Richmond Heights', 'May Valley', 'Park Plaza'],
-    landmarks: ['Point Richmond Historic District', 'Richmond Marina', 'Rosie the Riveter WWII Home Front NHP', 'Miller/Knox Regional Shoreline'],
-    issues: [
-      { title: 'Bayside corrosion', body: 'Salt air near Point Richmond and Marina Bay corrodes cables, springs, and rollers faster than inland — we fit rust-resistant parts built for a bayfront city.' },
-      { title: 'Aging detached garages', body: 'Iron Triangle and central Richmond homes often have detached garages with worn original hardware and tracks needing realignment.' },
-      { title: 'Hillside settling', body: 'Homes in the eastern hills (May Valley, Richmond Heights) can shift over time, pulling doors and tracks out of alignment.' },
-    ],
-    nearby: ['berkeley', 'oakland', 'concord'],
-    faqs: [
-      { q: 'Do you offer same-day garage door repair in Richmond?', a: 'Yes — same-day service is available across Richmond, including Point Richmond, Marina Bay, and the Annex, for common repairs.' },
-      { q: 'Does the bay air affect garage doors in Richmond?', a: 'It does. Waterfront moisture speeds up corrosion of cables, springs, and rollers, so we often recommend rust-resistant parts for homes near the water.' },
-      { q: 'Can you repair an old detached-garage door in Point Richmond?', a: 'Yes — we repair springs, hardware, and tracks on vintage detached garages, and give an honest repair-versus-replace recommendation when a door is failing.' },
-      { q: 'Can you replace a corroded cable near the Richmond Marina?', a: 'Definitely — corroded cables are one of our most common bayside repairs. We replace them in pairs and rebalance the door.' },
-    ],
-  },
+  // ----- Dublin -----
   {
     slug: 'dublin',
     name: 'Dublin',
@@ -317,6 +299,31 @@ export const CITIES: City[] = [
       { q: 'My home is newer — why is the spring already failing?', a: 'Heavy daily use cycles springs out regardless of age. We replace them in matched pairs and can fit longer-life high-cycle springs.' },
     ],
   },
+
+  // ----- Richmond -----
+  {
+    slug: 'richmond',
+    name: 'Richmond',
+    state: 'CA',
+    intro:
+      "Richmond stretches from the bayfront at Point Richmond and Marina Bay across the flats of the Iron Triangle and Richmond Annex up into the eastern hills along the El Cerrito border, May Valley, and Richmond Heights — and that range shows up in its garage doors. Closest to the water, in Point Richmond and Marina Bay, salt-laden bay air corrodes springs, cables, and rollers faster than inland, so rust-related failures are common. The older homes of the Iron Triangle and central Richmond frequently have detached garages with original hardware, tired springs, and tracks knocked out of alignment over the decades. Newer Hilltop and Marina Bay homes mostly run standard attached two-car doors that need routine spring, opener, and roller service. We provide same-day garage door repair across all of Richmond — springs, cables, rollers, openers, off-track doors, and full installations — with upfront, flat-rate pricing and licensed, insured technicians. Our trucks carry rust-resistant parts suited to a bayfront city, and we finish most repairs on the first visit. Whether it's a corroded cable near the Marina or a snapped spring in the Annex, we'll get your door balanced and running again.",
+    neighborhoods: ['Point Richmond', 'Marina Bay', 'Hilltop', 'Richmond Annex', 'Iron Triangle', 'Richmond Heights', 'May Valley', 'Park Plaza'],
+    landmarks: ['Point Richmond Historic District', 'Richmond Marina', 'Rosie the Riveter WWII Home Front NHP', 'Miller/Knox Regional Shoreline'],
+    issues: [
+      { title: 'Bayside corrosion', body: 'Salt air near Point Richmond and Marina Bay corrodes cables, springs, and rollers faster than inland — we fit rust-resistant parts built for a bayfront city.' },
+      { title: 'Aging detached garages', body: 'Iron Triangle and central Richmond homes often have detached garages with worn original hardware and tracks needing realignment.' },
+      { title: 'Hillside settling', body: 'Homes in the eastern hills (May Valley, Richmond Heights) can shift over time, pulling doors and tracks out of alignment.' },
+    ],
+    nearby: ['berkeley', 'oakland', 'concord'],
+    faqs: [
+      { q: 'Do you offer same-day garage door repair in Richmond?', a: 'Yes — same-day service is available across Richmond, including Point Richmond, Marina Bay, and the Annex, for common repairs.' },
+      { q: 'Does the bay air affect garage doors in Richmond?', a: 'It does. Waterfront moisture speeds up corrosion of cables, springs, and rollers, so we often recommend rust-resistant parts for homes near the water.' },
+      { q: 'Can you repair an old detached-garage door in Point Richmond?', a: 'Yes — we repair springs, hardware, and tracks on vintage detached garages, and give an honest repair-versus-replace recommendation when a door is failing.' },
+      { q: 'Can you replace a corroded cable near the Richmond Marina?', a: 'Definitely — corroded cables are one of our most common bayside repairs. We replace them in pairs and rebalance the door.' },
+    ],
+  },
+
+  // ----- Castro Valley -----
   {
     slug: 'castro-valley',
     name: 'Castro Valley',
@@ -330,7 +337,7 @@ export const CITIES: City[] = [
       { title: 'Hillside driveway wear', body: 'Five Canyons and Palomares Hills homes have longer, steeper driveways that add load on openers and wear rollers faster.' },
       { title: 'Settling & off-track doors', body: 'Ground movement on the slopes can pull tracks out of alignment over time, leaving doors off-track.' },
     ],
-    nearby: ['hayward', 'san-leandro', 'dublin'],
+    nearby: ['dublin', 'oakland', 'livermore'],
     faqs: [
       { q: 'Do you offer same-day garage door repair in Castro Valley?', a: 'Yes — same-day service is available across Castro Valley, from the boulevard to the hill neighborhoods, for common repairs.' },
       { q: 'Do you service the Five Canyons and Palomares hills?', a: 'Yes, we regularly serve the hillside neighborhoods and come equipped for longer, steeper driveways.' },
@@ -338,12 +345,14 @@ export const CITIES: City[] = [
       { q: 'Can you upgrade an old opener in Castro Valley?', a: 'Definitely — we replace aging units with quiet belt-drive Wi-Fi openers that include battery backup.' },
     ],
   },
+
+  // ----- Union City -----
   {
     slug: 'union-city',
     name: 'Union City',
     state: 'CA',
     intro:
-      "Union City sits right between Fremont and Hayward, and its housing splits between the established, historic Decoto and Alvarado districts and newer transit-oriented developments around the Union City BART station and Union Landing. The older Decoto and Old Alvarado neighborhoods have mid-century homes whose original springs, cables, and openers are well past their service life, while the newer areas have standard attached two-car garages that need routine spring, roller, and opener service. Heavy daily use on these double doors wears springs and rollers, and aging openers without rolling-code security or battery backup are common upgrade candidates. We provide same-day garage door repair throughout Union City with upfront, flat-rate pricing and licensed, insured technicians, and our trucks carry the springs, cables, rollers, and opener parts to finish the majority of repairs on the first visit. Whether it's a snapped spring in Decoto or a worn-out opener near Union Landing, we'll get your door balanced, quiet, and working again — usually the same day you call.",
+      "Union City sits in the southern East Bay along the I-880 corridor, with its housing split between the established, historic Decoto and Alvarado districts and newer transit-oriented developments around the Union City BART station and Union Landing. The older Decoto and Old Alvarado neighborhoods have mid-century homes whose original springs, cables, and openers are well past their service life, while the newer areas have standard attached two-car garages that need routine spring, roller, and opener service. Heavy daily use on these double doors wears springs and rollers, and aging openers without rolling-code security or battery backup are common upgrade candidates. We provide same-day garage door repair throughout Union City with upfront, flat-rate pricing and licensed, insured technicians, and our trucks carry the springs, cables, rollers, and opener parts to finish the majority of repairs on the first visit. Whether it's a snapped spring in Decoto or a worn-out opener near Union Landing, we'll get your door balanced, quiet, and working again — usually the same day you call.",
     neighborhoods: ['Decoto', 'Alvarado', 'Old Alvarado', 'Union Landing', 'Cabello', 'Hillview'],
     landmarks: ['Union City BART', 'Dry Creek Pioneer Regional Park', 'Quarry Lakes', 'Union Landing'],
     issues: [
@@ -351,7 +360,7 @@ export const CITIES: City[] = [
       { title: 'Heavy double doors', body: 'Attached two-car doors wear springs and rollers with daily use across both older and newer Union City neighborhoods.' },
       { title: 'Aging openers', body: 'Older openers without rolling-code security or battery backup are common candidates for a quiet, modern upgrade.' },
     ],
-    nearby: ['fremont', 'hayward', 'san-leandro'],
+    nearby: ['castro-valley', 'oakland', 'dublin'],
     faqs: [
       { q: 'Do you offer same-day garage door repair in Union City?', a: 'Yes — same-day service is available across Union City for common repairs like springs, cables, and openers.' },
       { q: 'Do you service the Decoto and Alvarado areas?', a: 'Yes — those established neighborhoods are fully within our Union City service area.' },
