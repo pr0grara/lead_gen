@@ -16,7 +16,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   color: var(--ink);
   background: #fff;
   line-height: 1.65;
@@ -151,7 +151,7 @@ textarea { resize: vertical; }
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 .cities li a:hover { border-color: var(--green); color: var(--green-dark); }
-.cities li::before { content: "📍 "; }
+/* .cities li::before { content: "📍 "; } */
 
 /* Map-based service area */
 .area-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: stretch; }
