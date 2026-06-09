@@ -85,7 +85,7 @@ p { margin: 0 0 1em; }
 .hero-single .hero-copy h1 { max-width: 18ch; }
 
 /* Quote card / form */
-.card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; color: var(--ink); }
+.card { background: #fff; box-shadow: var(--shadow); padding: 28px; color: var(--ink); }
 .card h2 { font-size: 1.6rem; }
 .card-sub { color: var(--ink-soft); margin-bottom: 18px; }
 form label { display: block; margin-bottom: 13px; font-size: 0.9rem; font-weight: 700; color: var(--ink); }
