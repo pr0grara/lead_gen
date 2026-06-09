@@ -22,9 +22,9 @@ export interface SiteConfig {
   /** Web3Forms access key, if using Web3Forms (otherwise leave ""). */
   formAccessKey: string;
   /**
-   * Unused by default — the service-area section now renders a static basemap
-   * image (see ServiceAreaMap.astro), not an embed. Kept for sites that prefer a
-   * live map: paste a Google Maps "Embed a map" src here and wire it up.
+   * Unused by default — the service-area section renders two keyless county
+   * Google Maps embeds (see ServiceAreaMap.astro). Kept for sites that want a
+   * single custom map instead: paste a Google Maps "Embed a map" src here.
    */
   mapEmbedSrc: string;
   priceRange: string;

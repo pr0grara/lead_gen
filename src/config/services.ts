@@ -104,7 +104,7 @@ export const SERVICES: Service[] = [
     slug: 'spring-repair',
     name: 'Garage Door Spring Repair',
     short: 'Spring Repair',
-    blurb: 'Fast, safe replacement of broken torsion and extension springs — usually same day.',
+    blurb: 'Fast, safe replacement of broken torsion and extension springs — same day.',
     description:
       "A broken torsion or extension spring is the most common reason a garage door won't open. Springs carry the entire weight of the door and are under extreme tension — dangerous to replace yourself. Our technicians replace worn and snapped springs safely the same day, so you're never stuck for long.",
     sections: [
