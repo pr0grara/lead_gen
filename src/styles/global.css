@@ -155,12 +155,10 @@ textarea { resize: vertical; }
 
 /* Map-based service area */
 .area-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: stretch; }
-.area-map { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); background: var(--bg-soft); min-height: 440px; }
-.area-map iframe { width: 100%; height: 100%; min-height: 440px; border: 0; display: block; }
+.area-map { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); background: var(--bg-soft); }
 .area-cities { max-width: none; margin: 0; grid-template-columns: repeat(2, 1fr); align-content: start; }
 @media (max-width: 920px) {
   .area-grid { grid-template-columns: 1fr; }
-  .area-map, .area-map iframe { min-height: 320px; }
 }
 @media (max-width: 480px) { .area-cities { grid-template-columns: 1fr; } }
 

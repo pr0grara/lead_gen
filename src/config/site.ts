@@ -22,9 +22,9 @@ export interface SiteConfig {
   /** Web3Forms access key, if using Web3Forms (otherwise leave ""). */
   formAccessKey: string;
   /**
-   * Embedded map iframe `src` for the service-area section. Leave "" to use a
-   * keyless OpenStreetMap embed of the region (see ServiceAreaMap.astro). To use
-   * Google Maps, paste the src from Google Maps → Share → "Embed a map".
+   * Unused by default — the service-area section now renders a static basemap
+   * image (see ServiceAreaMap.astro), not an embed. Kept for sites that prefer a
+   * live map: paste a Google Maps "Embed a map" src here and wire it up.
    */
   mapEmbedSrc: string;
   priceRange: string;

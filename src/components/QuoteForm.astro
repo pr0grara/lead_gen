@@ -22,19 +22,19 @@ const {
     {/* Honeypot: bots fill this; humans never see it. */}
     <input type="text" name="company_website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-    <label>
+    <label for="name" class="lbl">
       <span class="lbl">Name *</span>
       <input type="text" name="name" autocomplete="name" required placeholder="Jane Doe" />
     </label>
-    <label>
+    <label for="phone" class="lbl">
       <span class="lbl">Phone</span>
       <input type="tel" name="phone" autocomplete="tel" placeholder="(555) 123-4567" />
     </label>
-    <label>
+    <label for="email" class="lbl">
       <span class="lbl">Email *</span>
       <input type="email" name="email" autocomplete="email" required placeholder="jane@email.com" />
     </label>
-    <label>
+    <label for="message" class="lbl">
       <span class="lbl">How can we help?</span>
       <textarea name="message" rows="3" placeholder="e.g. broken spring, door won't open…"></textarea>
     </label>
