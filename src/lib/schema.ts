@@ -11,6 +11,8 @@ export function localBusiness(siteUrl: string) {
     telephone: SITE.phone,
     email: SITE.email,
     url: siteUrl,
+    image: SITE.ogImage ? `${siteUrl.replace(/\/$/, '')}${SITE.ogImage}` : undefined,
+    logo: `${siteUrl.replace(/\/$/, '')}/favicon.svg`,
     priceRange: SITE.priceRange,
     areaServed: CITIES.map((c) => ({ '@type': 'City', name: c.name })),
     aggregateRating: {

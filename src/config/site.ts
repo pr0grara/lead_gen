@@ -13,6 +13,8 @@ export interface SiteConfig {
   region: string;
   /** Production URL — keep in sync with `site` in astro.config.mjs (or set SITE_URL). */
   url: string;
+  /** Social-share card for og:image / twitter:image. 1200×630 file in public/, e.g. "/og-image.jpg". */
+  ogImage: string;
   /**
    * External form handler (e.g. Formspree "https://formspree.io/f/xxxx" or
    * Web3Forms "https://api.web3forms.com/submit"). Leave "" to render the form
@@ -41,6 +43,7 @@ export const SITE: SiteConfig = {
   email: 'hello@eastbaygaragedoorrepair.com',
   region: 'East Bay',
   url: 'https://eastbaygaragedoorrepair.com',
+  ogImage: '/og-image.jpg',
   formEndpoint: '',
   formAccessKey: '',
   mapEmbedSrc: '',
