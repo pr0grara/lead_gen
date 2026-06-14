@@ -1,14 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Garage Door Repairs">
-  <!-- house + roof -->
-  <path d="M24 5 L43 18 V43 H5 V18 Z" fill="#0f2741"/>
-  <!-- garage door opening -->
-  <rect x="14" y="22" width="20" height="21" fill="#ffffff"/>
-  <!-- door panel lines -->
-  <g stroke="#0f2741" stroke-width="2.2" stroke-linecap="round">
-    <line x1="14" y1="27.2" x2="34" y2="27.2"/>
-    <line x1="14" y1="32.4" x2="34" y2="32.4"/>
-    <line x1="14" y1="37.6" x2="34" y2="37.6"/>
-  </g>
-  <!-- accent: open-door handle -->
-  <rect x="22.5" y="24" width="3" height="2" rx="1" fill="#16a34a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="East Bay Garage Door">
+  <rect width="48" height="48" fill="#ffffff"/>
+  <circle cx="24" cy="24" r="21" fill="#015df4"/>
+  <circle cx="24" cy="24" r="8" fill="#fe7600"/>
 </svg>
