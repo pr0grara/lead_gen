@@ -49,7 +49,10 @@ const jsonLd = [
 ];
 const heroUrl = await getHeroUrl(city.heroImage);
 // Per-city photo override (real local job photo), falling back to the service default.
-const servicePhoto = city.serviceImages?.[service.slug] ?? service.image;
+const cityPhotoOverride = city.serviceImages?.[service.slug];
+const servicePhoto = cityPhotoOverride ?? service.image;
+// Only apply the service's crop position when using its default image, not a city override.
+const servicePhotoPosition = cityPhotoOverride ? undefined : service.imagePosition;
 ---
 <BaseLayout title={title} description={description} jsonLd={jsonLd} heroImageUrl={heroUrl}>
   <div class="container">
@@ -89,7 +92,7 @@ const servicePhoto = city.serviceImages?.[service.slug] ?? service.image;
         </p>
         <ul class="checklist">{service.points.map((p) => <li>{p}</li>)}</ul>
       </div>
-      <div class="srow-photo"><Image src={servicePhoto} alt={`${service.imageAlt} in ${city.name}`} width={800} loading="lazy" /></div>
+      <div class="srow-photo"><Image src={servicePhoto} alt={`${service.imageAlt} in ${city.name}`} width={800} loading="lazy" style={servicePhotoPosition ? `object-position: ${servicePhotoPosition}` : undefined} /></div>
     </div>
   </section>
 

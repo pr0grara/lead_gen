@@ -9,10 +9,10 @@
 import type { ImageMetadata } from 'astro';
 import garageDoorRepairImg from '../assets/real_photos/baddoor_1.jpeg';
 import springRepairImg from '../assets/real_photos/spring_2.jpeg';
-import openerRepairImg from '../assets/services/opener-repair.webp';
-import cableRepairImg from '../assets/services/cable-repair.webp';
+import openerReplaceImg from '../assets/services/opener-repair.jpeg';
+import cableRepairImg from '../assets/services/cable-repair.jpeg';
 import offTrackRepairImg from '../assets/real_photos/outoftrack_5.jpeg';
-import newDoorImg from '../assets/services/new-door-installation.webp';
+import newDoorImg from '../assets/services/new-door-installation.jpeg';
 import emergencyRepairImg from '../assets/real_photos/carhit_1.jpeg';
 
 export interface Faq {
@@ -43,6 +43,8 @@ export interface Service {
   faqs: Faq[];
   image: ImageMetadata;
   imageAlt: string;
+  /** CSS object-position for the photo crop (defaults to center). */
+  imagePosition?: string;
   /** Hub-only: do not generate per-city combo pages. */
   hubOnly?: boolean;
   /** Flagged as an emergency/urgent service (affects copy). */
@@ -145,49 +147,49 @@ export const SERVICES: Service[] = [
     imageAlt: 'Technician replacing a garage door torsion spring',
   },
   {
-    slug: 'opener-repair',
-    name: 'Garage Door Opener Repair',
-    short: 'Opener Repair',
-    blurb: 'Troubleshooting, repair, and installation of openers from every major brand.',
+    slug: 'opener-replacement',
+    name: 'Garage Door Opener Replacement',
+    short: 'Opener Replacement',
+    blurb: 'Removal of your old unit and installation of a quiet, modern opener from every major brand.',
     description:
-      'Remote not responding, motor humming without moving, or the opener completely dead? We diagnose and repair openers from all major brands — and when repair no longer makes sense, install quiet, modern belt-drive units with smartphone control and battery backup.',
+      'Opener over 15 years old, too loud, or finally dead? We remove your old unit and install a quiet, modern belt-drive opener with smartphone control and battery backup — sized to your door and set up to work reliably for years.',
     sections: [
       {
-        h: 'Common opener problems we fix',
-        body: 'Unresponsive remotes and keypads, misaligned or dirty safety sensors (door reverses before closing), stripped drive gears, worn trolleys, faulty logic boards, and wall-button failures. Most are quick, affordable fixes — not a full replacement.',
+        h: 'When it’s time to replace',
+        body: 'If your opener is over 15 years old, lacks rolling-code security, runs on a noisy chain drive, or needs a costly logic board, a new unit is usually the better value. We carry quiet belt-drive openers with Wi-Fi, battery backup (required by CA law on new installs), and smartphone control.',
       },
       {
-        h: 'Repair vs. new opener',
-        body: 'If your opener is over 15 years old, lacks rolling-code security, or needs a costly board, a new unit is often the better value. We carry quiet belt-drive openers with Wi-Fi, battery backup (required by CA law on new installs), and smartphone control.',
+        h: 'A clean, complete install',
+        body: 'We haul away the old opener, mount and program the new motor, align the safety sensors, sync remotes and keypads, and balance the door so the new unit isn’t fighting worn springs. You’re left with a quiet, reliable door before we leave.',
       },
       {
-        h: 'Brands we service',
-        body: 'LiftMaster, Chamberlain, Genie, Sommer, Marantec, Craftsman, and more — repaired and installed.',
+        h: 'Brands we install',
+        body: 'LiftMaster, Chamberlain, Genie, Sommer, Marantec, Craftsman, and more — supplied and professionally installed.',
       },
     ],
     points: [
-      'Repair of all major opener brands',
       'New quiet belt-drive openers',
+      'All major opener brands installed',
+      'Old unit removal & haul-away',
       'Wi-Fi & smartphone setup',
-      'Safety-sensor alignment',
       'Battery-backup units (CA compliant)',
     ],
     faqs: [
       {
-        q: 'Why does my garage door open but not close?',
-        a: 'Almost always the safety sensors near the floor are misaligned or blocked. We realign and test them — usually a fast, low-cost fix.',
+        q: 'How long does a garage door opener replacement take?',
+        a: 'Most replacements are done in about two to three hours — that includes removing the old unit, mounting and programming the new opener, aligning the sensors, and syncing your remotes.',
       },
       {
         q: 'Are new openers required to have battery backup in California?',
         a: 'Yes. California law requires residential garage door openers installed since 2019 to include a battery backup so the door works during a power outage.',
       },
       {
-        q: 'Can you add smartphone control to my garage?',
-        a: 'Yes — either by installing a Wi-Fi opener or, in many cases, adding a compatible smart controller to your existing opener.',
+        q: 'Can you add smartphone control with a new opener?',
+        a: 'Yes — the quiet Wi-Fi belt-drive openers we install include smartphone control, so you can open, close, and monitor your door from anywhere.',
       },
     ],
-    image: openerRepairImg,
-    imageAlt: 'Garage door opener motor being serviced',
+    image: openerReplaceImg,
+    imageAlt: 'New garage door opener being installed',
   },
   {
     slug: 'cable-repair',
@@ -224,6 +226,7 @@ export const SERVICES: Service[] = [
     ],
     image: cableRepairImg,
     imageAlt: 'Garage door lift cable and drum being repaired',
+    imagePosition: 'center 28%',
   },
   {
     slug: 'off-track-repair',
