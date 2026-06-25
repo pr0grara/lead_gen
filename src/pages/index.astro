@@ -9,7 +9,7 @@ import { SITE, tel } from '../config/site';
 import { getHeroUrl } from '../lib/images';
 
 const title = 'East Bay Garage Door Repair | Same-Day Service';
-const description = `Fast, reliable ${SITE.trade} and installation across the ${SITE.region}. Same-day mobile service, licensed technicians, upfront pricing. Call ${SITE.phoneDisplay}.`;
+const description = `Fast, reliable ${SITE.trade} and installation across the ${SITE.region}. Same-day service, licensed technicians, upfront pricing. Call ${SITE.phoneDisplay}.`;
 const heroUrl = await getHeroUrl();
 ---
 <BaseLayout title={title} description={description} heroImageUrl={heroUrl}>
@@ -21,7 +21,7 @@ const heroUrl = await getHeroUrl();
         <h1>Repair Pros</h1>
         <p class="lede">
           Broken spring, noisy opener, or a door off its track? Our licensed technicians repair and
-          install every make and model — same-day mobile service with upfront pricing.
+          install every make and model — same-day service with upfront pricing.
         </p>
         <div class="hero-cta">
           <a class="btn btn-call btn-lg" href={tel()}>📞 Call Now: {SITE.phoneDisplay}</a>
